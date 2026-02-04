@@ -1,0 +1,38 @@
+{
+  "employees": {
+    "description": "Employee master data",
+    "columns": {
+      "emp_id": "Employee ID (TEXT, primary key)",
+      "name": "Employee name (TEXT)",
+      "department": "Department name (TEXT)",
+      "email": "Employee email (TEXT)"
+    }
+  },
+  "leaves": {
+    "description": "Employee leave balances",
+    "columns": {
+      "emp_id": "Employee ID (TEXT, foreign key)",
+      "balance": "Remaining leave balance (INTEGER)"
+    }
+  },
+  "salaries": {
+    "description": "Employee salary details",
+    "columns": {
+      "emp_id": "Employee ID (TEXT, foreign key)",
+      "salary": "Annual salary (INTEGER)"
+    }
+  },
+  "leave_log": {
+    "description": "Audit log of leave applications",
+    "columns": {
+      "id": "Auto-increment identifier",
+      "emp_id": "Employee ID",
+      "created_at": "When leave was applied",
+      "total_leaves_before": "Balance before deduction",
+      "leaves_requested": "Number of leaves requested",
+      "start_date": "Leave start date",
+      "end_date": "Leave end date",
+      "total_leaves_after": "Balance after deduction"
+    }
+  }
+}

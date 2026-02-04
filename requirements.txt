@@ -1,0 +1,12 @@
+flask
+python-dotenv
+langchain
+langchain_community
+langgraph
+langchain-openai
+langchain-google-genai
+faiss-cpu
+pandas
+sqlalchemy
+pydantic
+requests
