@@ -112,12 +112,30 @@ Rules:
     - Restrict results to emp_id = '{emp_id}'
     - Do NOT return data for other employees
 - Queries on leave_log MUST always be filtered by emp_id
+- Queries on leave_log MUST always be filtered by emp_id
+- If asked about multiple pieces of information, use separate queries or JOIN tables
+- DO NOT concatenate multiple SELECT statements
 
 User question:
 {state['query']}
 """
 
-    sql = llm.invoke(prompt).content.strip()
+
+    resp = llm.invoke(prompt)
+    content = resp.content
+
+    if isinstance(content, list):
+        parts = []
+        for p in content:
+            if isinstance(p, str):
+                parts.append(p)
+            elif isinstance(p, dict) and "text" in p:
+                parts.append(p["text"])
+            else:
+                parts.append(str(p))
+        sql = "\n".join(parts).strip()
+    else:
+        sql = str(content).strip()
     logger.info(f"Generated SQL: {sql}")
 
     if not sql.lower().startswith("select"):

@@ -23,7 +23,7 @@ def get_embeddings():
 
     if provider == "gemini":
         logger.info("Using Gemini embeddings")
-        return GoogleGenerativeAIEmbeddings(model="models/embedding-001")
+        return GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001")
 
     if provider == "openai":
         if not os.getenv("OPENAI_API_KEY"):
@@ -50,8 +50,9 @@ def build_index():
 
     all_chunks = []
     splitter = RecursiveCharacterTextSplitter(
-        chunk_size=300,
-        chunk_overlap=50
+        chunk_size=1500,
+        chunk_overlap=300,
+        separators=["\n\n", "\n", ". "] 
     )
 
     for policy_path in policy_files:

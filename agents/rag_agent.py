@@ -10,13 +10,27 @@ def rag_agent(state):
 
     retriever = get_retriever()
     docs = retriever.invoke(state["query"])
+    # Debug: Check metadata
+    if docs:
+        logger.info(f"First doc metadata: {docs[0].metadata}")
 
     logger.info(f"Retrieved chunks: {len(docs)}")
 
-    context = "\n".join(d.page_content for d in docs)
-    citations = [d.metadata.get("section") for d in docs]
+    context = "\n\n".join(d.page_content for d in docs)
+    
+    # ✅ Store both policy name and section together
+    citations = [
+        f"{d.metadata.get('policy', 'Unknown')} — {d.metadata.get('section', '')}"
+        for d in docs
+    ]
+    logger.info(f"Citations created: {len(citations)}")
+    logger.info(f"First citation: {citations[0] if citations else 'None'}")
+
+    # ✅ Store chunks separately for table display
+    chunks = [d.page_content for d in docs]
 
     return {
         "rag_context": context,
-        "citations": citations
+        "policy_citations": citations,
+        "rag_chunks": chunks   # ← add this to state
     }

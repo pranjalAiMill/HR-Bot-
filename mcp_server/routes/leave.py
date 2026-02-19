@@ -182,7 +182,7 @@ def apply_leave():
                 leaves_requested,
                 start_date,
                 end_date,
-                total_leaves_after
+                 total_leaves_after 
             )
             VALUES (?, ?, ?, ?, ?, ?, ?)
             """,
@@ -196,7 +196,7 @@ def apply_leave():
                 total_after
             )
         )
-
+                            
         conn.commit()
 
         # 6️⃣ Persist leave_log to CSV
@@ -211,7 +211,7 @@ def apply_leave():
     try:
         email_body = f"""
 Hi {emp_name},
-
+    
 As per your request, your leave has been marked for approval.
 
 Leave Period:

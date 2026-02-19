@@ -125,7 +125,7 @@ def planner_agent(state):
                     "message": "You can only apply leave for yourself."
                 }
             }
-
+    
     # ----------------------------
     # ✅ DETERMINISTIC ROUTING
     # ----------------------------
@@ -133,26 +133,47 @@ def planner_agent(state):
     if "policy" in q or "leave policy" in q:
         return {"steps": ["RAG"]}
 
-    if "apply" in q:
+    if "apply leave" in q:
         return {"steps": ["ACTION"]}
 
-    if "balance" in q or "how many" in q or "salary" in q:
+    if "balance" in q or "salary" in q:
         return {"steps": ["SQL"]}
+
 
     # ----------------------------
     # 🔁 LLM FALLBACK (RARE)
     # ----------------------------
 
     logger.warning("No hard rule matched — falling back to LLM planner")
-
+    
     prompt = f"""
 You are an expert HR with over 20 years of experience.
 You have to decide execution steps for the HR query:
 "{query}"
 
 Return STRICT JSON array using only:
-RAG, SQL, ACTION
+- RAG: Use when the answer comes from a policy document, handbook, or 
+       company rules. The query asks about how something works, what 
+       the rules are, what consequences exist, or what policies apply.
+       
+- SQL: Use when the answer requires looking up a specific employee's 
+       personal data from a database — their own records, numbers, 
+       or history that is unique to them.
+       
+- ACTION: Use ONLY when the user is explicitly requesting to perform 
+          an operation — submitting, applying, cancelling, or booking 
+          something right now.
 
+Critical distinction for the word "apply":
+- "apply leave", "apply for leave", "I want to apply" → ACTION
+- "which policies apply", "what rules apply", "consequences apply" → RAG
+
+Decision rule:
+- Query asks about a RULE, POLICY, or CONSEQUENCE, which policies apply → RAG
+- If the query is about ME / MY personal data → SQL  
+- If the query wants to DO something right now → ACTION
+- When in doubt → RAG    
+ 
 Rules:
 - No markdown
 - No explanation
@@ -161,10 +182,27 @@ Example:
 ["RAG"]
 """
 
-    steps = json.loads(llm.invoke(prompt).content)
+    resp = llm.invoke(prompt)
+    content = resp.content
+
+    if isinstance(content, list):
+        parts = []
+        for p in content:
+            if isinstance(p, str):
+                parts.append(p)
+            elif isinstance(p, dict) and "text" in p:
+                parts.append(p["text"])
+            else:
+                parts.append(str(p))
+        planner_json = "\n".join(parts).strip()
+    else:
+        planner_json = str(content).strip()
+
+    steps = json.loads(planner_json)
 
     for s in steps:
         if s not in ALLOWED_STEPS:
             raise RuntimeError(f"Invalid planner step: {s}")
 
     return {"steps": steps}
+

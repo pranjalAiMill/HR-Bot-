@@ -15,7 +15,7 @@ def get_embeddings():
     provider = os.getenv("LLM_PROVIDER", "openai").lower()
 
     if provider == "gemini":
-        return GoogleGenerativeAIEmbeddings(model="models/embedding-001")
+        return GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001")
 
     return OpenAIEmbeddings()
 
@@ -41,7 +41,13 @@ def get_retriever():
     )
 
 
-    _retriever = db.as_retriever()
+    _retriever = db.as_retriever(
+        search_type="mmr",
+        search_kwargs={
+            "k": 15,
+            "fetch_k": 40
+        }
+    )
     logger.info("Vector retriever ready")
 
     return _retriever

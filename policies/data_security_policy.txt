@@ -1,11 +1,86 @@
-Data Security Policy
+Data Protection and Privacy Policy
 
-- Employees must protect company data and systems.
+- PURPOSE
+The purpose of this Data Protection and Privacy Policy is to establish principles, responsibilities, and procedures for the lawful, fair, and secure handling of personal and sensitive data. The Company is committed to protecting the privacy of individuals and ensuring that personal data is collected, processed, stored, and disclosed in compliance with applicable data protection laws and best practices.
 
-- Sharing credentials is strictly prohibited.
+- SCOPE
+This policy applies to all employees, contractors, consultants, interns, temporary staff, and third parties who collect, access, process, store, transmit, or otherwise handle personal data on behalf of the Company. It covers personal data relating to employees, customers, clients, vendors, business partners, and any other identifiable individuals.
 
-- Devices must comply with company security standards.
+- POLICY STATEMENT
+The Company recognizes the importance of data privacy and is committed to safeguarding personal data against unauthorized access, misuse, disclosure, alteration, or destruction. Personal data shall be processed only for legitimate business purposes and in a manner that respects the rights and privacy of individuals.
 
-- Any data breach must be reported immediately.
+Non-compliance with this policy may result in disciplinary action, termination of employment or contract, and legal consequences.
 
-- Non-compliance may result in legal and disciplinary action.
+- DEFINITIONS
+    a. Personal Data refers to any information that identifies or can be used to identify an individual, such as name, contact details, identification numbers, location data, or online identifiers.
+    b. Sensitive Personal Data includes information such as financial data, health information, biometric data, government-issued identifiers, and other data requiring enhanced protection.
+    c. Processing includes collection, recording, storage, use, disclosure, transfer, or deletion of personal data.
+    d. Data Subject refers to the individual whose personal data is being processed.
+
+- DATA PROTECTION PRINCIPLES
+The Company processes personal data in accordance with the following principles:
+    a. Personal data is processed lawfully, fairly, and transparently.
+    b. Data is collected for specific, legitimate business purposes and not used beyond those purposes.
+    c. Only data that is necessary and relevant is collected.
+    d. Personal data is kept accurate and up to date.
+    e. Data is retained only for as long as necessary to fulfill its purpose or legal obligations.
+    f. Appropriate technical and organizational measures are implemented to protect personal data.
+
+- COLLECTION AND USE OF PERSONAL DATA
+Personal data is collected only when required for legitimate business, employment, contractual, or legal purposes. This may include recruitment, payroll administration, benefits management, performance management, client services, compliance obligations, and operational needs.
+
+Individuals are informed of the purpose for which their data is collected, either through employment documentation, contracts, consent forms, or privacy notices, as applicable.
+
+- CONSENT AND LEGAL BASIS FOR PROCESSING
+Where required by law, the Company obtains explicit consent before collecting or processing personal data. Consent must be freely given, informed, specific, and revocable.
+
+In certain circumstances, personal data may be processed without consent where processing is necessary for contractual obligations, legal compliance, protection of vital interests, or legitimate business interests, as permitted by law.
+
+- DATA ACCESS AND DISCLOSURE
+Access to personal data is restricted to authorized individuals on a need-to-know basis.
+
+Personal data may be disclosed internally or externally only when necessary for legitimate business purposes, legal obligations, or contractual requirements. Any third party receiving personal data must adhere to equivalent data protection and confidentiality standards.
+
+Unauthorized access, disclosure, or sharing of personal data is strictly prohibited.
+
+- DATA SECURITY MEASURES
+The Company implements appropriate administrative, technical, and physical safeguards to protect personal data, including access controls, encryption, secure systems, monitoring, and regular security assessments.
+
+Employees must follow all data security procedures and report any suspected data breach or privacy incident immediately.
+
+- DATA RETENTION AND DELETION
+
+Personal data is retained only for as long as required to meet business needs or legal obligations. Retention periods are determined based on statutory requirements, contractual obligations, and operational necessity.
+
+When personal data is no longer required, it must be securely deleted, destroyed, or anonymized in accordance with Company procedures.
+
+- DATA SUBJECT RIGHTS
+Where applicable under law, individuals have the right to:
+    a. Access their personal data
+    b. Request correction or updates to inaccurate data
+    c. Request deletion or restriction of processing
+    d. Withdraw consent where processing is based on consent
+    e. Raise concerns or complaints regarding data handling
+Requests related to data subject rights must be submitted to HR or the designated Data Protection Officer, where applicable.
+
+- DATA BREACH AND INCIDENT MANAGEMENT
+A data breach includes any unauthorized access, loss, theft, disclosure, or compromise of personal data.
+
+All employees must report suspected or actual data breaches immediately. The Company will investigate incidents promptly and take appropriate corrective action, including notification to affected individuals and regulatory authorities where required by law.
+
+- CROSS-BORDER DATA TRANSFERS
+Personal data may be transferred across borders only where permitted by law and where appropriate safeguards are in place to ensure continued protection of the data.
+
+- EMPLOYEE RESPONSIBILITIES
+All employees are responsible for:
+    a. Understanding and complying with this policy
+    b. Handling personal data responsibly and securely
+    c. Completing mandatory data protection training
+    d. Reporting privacy concerns or potential violations promptly
+    e. Failure to comply may result in disciplinary action.
+
+- THIRD-PARTY PROCESSORS
+Third parties processing personal data on behalf of the Company must comply with contractual data protection obligations and applicable laws. The Company may audit or review third-party compliance as necessary.
+
+- POLICY REVIEW AND AMENDMENT
+This policy will be reviewed periodically and updated to reflect changes in legal requirements, business operations, or data protection risks. The Company reserves the right to amend this policy at any time.

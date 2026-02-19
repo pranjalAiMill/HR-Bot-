@@ -1,11 +1,66 @@
-Attendance Policy
+2 Attendance Policy
 
-- Employees are required to adhere to official working hours.
+2.1 Purpose
+This policy establishes clear guidelines for employee attendance, punctuality, and time tracking
+to ensure operational efficiency while maintaining work-life balance.
 
-- Attendance must be marked through the designated system.
+2.2 Scope
+This policy applies to all full-time, part-time, and contract employees across all departments and
+locations.
 
-- Late arrivals or early departures must be approved.
+2.3 Policy Details
 
-- Repeated attendance violations may lead to disciplinary action.
+2.3.1 Working Hours
+Standard working hours: 9:00 AM to 6:00 PM (Monday to Friday)
+Total hours per week: 40 hours (excluding lunch break)
+Lunch break: 1 hour (not included in working hours)
+Grace period: 15 minutes (attendance marked late after 9:15 AM)
 
-- Attendance records are reviewed monthly.
+2.3.2 Attendance Marking
+• Attendance must be marked through the official HRMS system or biometric device
+• Employees working remotely must mark attendance through the company portal
+• Failure to mark attendance may result in Leave Without Pay (LWP)
+• In case of system failure, notify your manager and HR immediately
+
+2.3.3 Late Arrivals
+• Arrival after 9:15 AM is considered late
+• Late arrivals must be informed to the reporting manager via email/chat
+• 3 late arrivals in a month = 1 day of Casual Leave deduction
+• Frequent late arrivals (5+ times per month) may lead to disciplinary action
+• Medical or emergency situations will be considered on a case-by-case basis
+
+2.3.4 Early Departures
+• Any departure before 6:00 PM requires manager approval
+• Early departure requests must be submitted at least 2 hours in advance
+• Emergency early departures should be communicated immediately
+• Frequent unapproved early departures may result in leave deduction
+
+2.3.5 Attendance Violations
+Progressive disciplinary action:
+• 1st violation: Verbal warning
+• 2nd violation: Written warning
+• 3rd violation: Final warning with performance improvement plan
+• 4th violation: Termination consideration
+
+2.3.6 Monthly Review
+• Attendance records are reviewed on the last working day of each month
+• Managers receive attendance reports for their teams
+• HR conducts quarterly attendance audits
+• Discrepancies should be raised within 5 working days
+
+2.4 Special Situations
+
+2.4.1 Probation Period
+Probationary employees are expected to maintain 100% attendance except for approved
+leaves. Poor attendance during probation may result in extension or termination of employment.
+
+2.4.2 Remote Work Attendance
+Employees working from home must be available during core hours (10:00 AM - 4:00 PM) and
+mark attendance as per WFH Policy (HR-WFH-001).
+
+2.4.3 Field Work & Client Visits
+Employees on field assignments must inform their manager and mark attendance with location
+details in the HRMS system.
+
+
+

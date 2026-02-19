@@ -1,99 +1,141 @@
 Leave Policy
 
-- This document defines the leave entitlements, rules, and approval mechanisms applicable to all employees of the organization.
+PURPOSE
+The purpose of this Leave Policy is to define the various types of leave available to employees, establish eligibility criteria, outline procedures for requesting and approving leave, and ensure consistent and fair application across the organization. The Company recognizes that time away from work is essential for rest, personal responsibilities, health, and family needs, and seeks to support employees while maintaining operational effectiveness.
 
-Casual Leave (CL)
+SCOPE AND APPLICABILITY
+This policy applies to all employees of the Company, including full-time and part-time employees. Certain leave benefits may differ based on employment status, length of service, role, or applicable statutory requirements. Where local, state, or national labor laws provide more generous benefits, those legal provisions shall prevail.
 
-- Casual Leave is intended for short-term personal needs or unforeseen situations.
+GENERAL LEAVE GUIDELINES
+All leave is subject to the following general conditions:
+- Employees are required to obtain approval for leave in advance, except in cases of emergencies or unforeseen circumstances.
+-Leave requests must be submitted through the designated HR system or in writing to the reporting manager.
+- Approval of leave is subject to business requirements, workload, and staffing considerations.
+- Employees must not make personal travel arrangements or commitments until leave is approved.
+- Providing false information, misrepresenting the reason for leave, or abusing leave privileges may result in disciplinary action, up to and including termination.
+- The Company reserves the right to request supporting documentation for any type of leave when deemed necessary.
 
-- Employees are entitled to 12 Casual Leave days per calendar year.
+TYPES OF LEAVE
 
-- Casual Leave may be used for personal reasons, family matters, or emergencies.
+-Paid Time Off (PTO) / Annual Leave
+Paid Time Off is provided to allow employees time away from work for rest, relaxation, personal matters, or vacation.
+a. Eligibility and Accrual:
+Paid Time Off is available to all full-time employees. Part-time employees receive PTO on a prorated basis in accordance with their scheduled working hours. PTO accrues periodically in line with the Company’s payroll cycle and begins from the employee’s date of hire. Accrual for partial years is prorated.
+b. Usage of PTO:
+Employees may use PTO for vacation, personal commitments, or planned time away from work. PTO requests should be submitted as far in advance as possible to allow for planning and adequate coverage. Longer periods of leave require earlier notice. Approval is granted based on business needs, team coverage, and the employee’s leave balance at the time of request.
+PTO may be taken as full days or partial days, subject to minimum increment requirements established by the Company.
+c. Carryover and Limits:
+Unused PTO may be carried forward to the next calendar year up to a maximum cap determined by the Company. Once the maximum allowable balance is reached, additional PTO will not accrue until the balance is reduced. Employees are encouraged to use PTO regularly to support work-life balance.
+d. PTO at Separation:
+Upon resignation, retirement, or termination, accrued and unused PTO will be paid out in the final settlement where required by applicable law. Where not legally required, payout will be governed by Company policy.
+e. PTO Entitlement:
+Eligible full-time employees are entitled to fifteen (15) working days of Paid Time Off per calendar year. PTO entitlement is based on a standard five-day workweek and applies to confirmed employees unless otherwise specified in an employment agreement.
 
-- A maximum of 2 consecutive Casual Leave days may be availed.
+The Company may revise PTO entitlement based on years of service, role, or business requirements. Any changes will be communicated in writing and applied consistently.
 
-- Any extension beyond 2 days must be converted to another applicable leave type.
+- Sick Leave
+Sick leave is provided to allow employees time away from work to recover from illness or injury and to attend medical appointments, while also preventing the spread of illness in the workplace.
+a.Eligibility and Accrual:
+Sick leave is available to all eligible employees and accrues periodically from the first day of employment. Part-time employees receive sick leave on a prorated basis or as required by law. Sick leave accrual is subject to a maximum accumulation cap.
+b. Permissible Uses:
+Sick leave may be used for the employee’s own physical or mental illness, injury, or medical condition, including preventive care such as medical, dental, or vision appointments. Sick leave may also be used to care for an immediate family member who is ill or requires medical attention. Additionally, sick leave may be used for recovery or support related to domestic violence or sexual assault, where applicable.
+c. Notification and Documentation:
+Employees must notify their supervisor as soon as possible when sick leave is required, preferably before the start of the scheduled workday. For planned medical appointments, advance notice should be provided whenever feasible.
+The Company may require medical documentation for absences exceeding a specified number of consecutive days or in cases where there is a suspected pattern or misuse of sick leave. Medical documentation should confirm the dates of absence and fitness to return to work, without requiring disclosure of specific diagnoses.
+d. Carryover and Payout:
+Unused sick leave carries forward year to year up to the applicable cap. Sick leave is generally not paid out upon separation from employment unless required by law.
 
-- Prior approval from the reporting manager is mandatory.
+- Casual Leave
+Casual leave is intended to provide flexibility for employees to attend to short-term personal matters, emergencies, or unforeseen situations that cannot be planned in advance.
+a.Eligibility and Allocation:
+Casual leave is granted annually to eligible employees and is credited at the beginning of the calendar year or prorated for new hires joining mid-year. This leave does not accrue over time.
+b.Usage Guidelines:
+Casual leave may be used for personal errands, family responsibilities, religious or cultural observances, or urgent personal matters. It is not intended for leisure travel or extended vacations, which should be covered under PTO.
+Casual leave is typically limited to short durations and may not be combined with weekends or holidays to extend time off without valid justification. Approval is subject to business requirements.
+c.Expiry and Payout:
+Unused casual leave lapses at the end of the calendar year and does not carry forward. Casual leave is not paid out upon separation.
 
-- In emergency situations, Casual Leave may be applied retrospectively with manager approval.
+- Maternity Leave
+Maternity Leave is provided to support female employees during pregnancy, childbirth, and postnatal recovery, in accordance with applicable labor laws. The Company is committed to ensuring the health, well-being, and job security of employees during this important life event.
+a. Eligibility:
+Maternity leave is available to female employees who meet the eligibility criteria prescribed under applicable labor laws and have completed the required period of service, where applicable.
+b. Entitlement:
+Female employees are entitled to twenty-six (26) weeks of paid maternity leave. This leave includes both pre-natal and post-natal periods and must be availed in accordance with legal requirements. The leave may be taken before the expected date of delivery and continued after childbirth, as medically advised.
+In cases of adoption or commissioning motherhood (where applicable under law), maternity leave entitlement shall be provided as prescribed by statutory provisions.
+c. Payment During Maternity Leave:
+Maternity leave is fully paid at the employee’s regular rate of pay, subject to applicable laws. Payment will be processed through the regular payroll cycle during the approved maternity leave period.
+d. Application and Documentation:
+Employees must notify their reporting manager and HR in writing as early as reasonably possible regarding their intention to avail maternity leave. Medical certification confirming pregnancy and the expected date of delivery may be required to process the leave request.
+e. Benefits and Job Protection:
+During maternity leave, all employment benefits, including health insurance and other applicable benefits, will continue as per Company policy and legal requirements. Upon return from maternity leave, the employee will be reinstated to the same position or an equivalent position with no loss of pay, seniority, or service benefits, as mandated by law.
+f. Extension and Additional Leave:
+Any extension of leave beyond the statutory maternity leave period must be requested separately and will be subject to approval. Such extensions may be covered under accrued paid leave or Leave Without Pay, as applicable.
+g. Return to Work:
+Employees are expected to inform their manager and HR of their intended return-to-work date in advance. Where required, a fitness-for-duty or medical clearance may be requested prior to resumption of duties.
 
-- Casual Leave cannot be carried forward or encashed.
+- Paternity Leave
+Paternity Leave is provided to support eligible employees following the birth of a child or the legal adoption of a child. The purpose of this leave is to allow the employee to support the primary caregiver, bond with the child, and manage family responsibilities during the immediate post-birth or post-adoption period.
+a. Eligibility:
+Paternity leave is available to male employees who are legally recognized as the father or parent of a newborn child or an adopted child. Eligibility may be subject to the employee having completed a minimum period of continuous service with the Company, as defined by applicable law or Company guidelines.
+b. Duration and Usage:
+Eligible employees may avail paternity leave for a defined number of working days as prescribed by Company policy or applicable labor laws. Paternity leave must generally be taken within a specified period following the birth or adoption of the child and may be required to be taken in a continuous block unless otherwise approved.
+c. Application and Documentation:
+Employees intending to avail paternity leave must notify their reporting manager and HR as early as reasonably possible. Supporting documentation, such as a birth certificate, hospital confirmation, or adoption papers, may be required to process the leave.
+d. Payment and Benefits:
+Paternity leave will be paid or unpaid based on Company policy and statutory requirements. During approved paid paternity leave, employment benefits will continue in accordance with Company policy.
 
-- Unused Casual Leave lapses at the end of the calendar year.
+- Parental and Adoption Leave
+Parental and Adoption Leave is provided to employees who become parents through adoption, surrogacy, or other legally recognized arrangements. This leave enables employees to bond with and care for a newly placed child and to adjust to new family responsibilities.
+a. Eligibility:
+Parental and adoption leave is available to employees who have legally adopted a child or become parents through surrogacy or similar lawful arrangements, subject to eligibility criteria established by the Company and applicable laws.
+b. Duration and Structure:
+Eligible employees are entitled to eight (8) weeks of paid parental or adoption leave, which must be taken within twelve (12) months of the child’s birth, adoption, or placement. The leave is generally taken as a continuous period, with flexible or reduced-schedule arrangements considered on a case-by-case basis subject to business needs and approval.
+c. Application Process:
+Employees must submit a written request for parental or adoption leave to their reporting manager and HR, along with relevant supporting documentation such as adoption orders or legal placement papers. Advance notice should be provided wherever possible.
+d. Integration with Other Leave:
+Parental and adoption leave is separate from PTO and sick leave. Employees may be permitted to use accrued paid leave to extend time off beyond the approved parental leave period, subject to approval and legal requirements.
 
-- Casual Leave cannot be clubbed with Earned Leave or Sick Leave.
+- Bereavement Leave
+Bereavement Leave is provided to allow employees time away from work to grieve, attend funeral or memorial services, and manage personal and family affairs following the death of a loved one. The Company recognizes the emotional impact of such events and aims to administer this leave with compassion and sensitivity.
+a. Eligibility and Entitlement:
+Employees may avail paid bereavement leave in the event of the death of an immediate family member. Limited paid leave may also be granted for extended family members or other significant personal relationships, subject to managerial approval.
+b. Usage and Timing:
+Bereavement leave should generally be taken within a reasonable period following the death or funeral services. Leave may be taken consecutively or intermittently, depending on individual circumstances and operational requirements.
+c. Documentation:
+While the Company seeks to minimize administrative burden during periods of loss, documentation such as an obituary, funeral notice, or death certificate may be requested in exceptional cases or where misuse is suspected.
+d. Additional Support:
+If additional time off is required, employees may request PTO, sick leave, or Leave Without Pay. Managers are encouraged to provide flexibility where reasonable.
 
-Sick Leave (SL)
+- Leave Without Pay
+Leave Without Pay is granted when an employee requires time away from work and has exhausted all applicable paid leave balances, or when the reason for absence does not qualify under paid leave categories.
+a. Eligibility:
+Employees must generally have completed their probationary period to be considered for Leave Without Pay, unless otherwise required by law.
+b. Approval Process:
+All Leave Without Pay requests must be submitted in writing and approved in advance by the reporting manager and HR. Approval is based on the nature of the request, length of service, performance history, duration of leave, and business requirements.
+c. Conditions During Leave:
+During Leave Without Pay, employees will not receive salary and may not accrue benefits such as PTO or sick leave. Certain benefits, such as health insurance, may be continued subject to employee contribution and applicable laws.
+d. Return to Work:
+Employees are required to return to work on the agreed date. Failure to return or communicate extensions may be treated as job abandonment or voluntary resignation.
 
-- Sick Leave is provided to support employees during illness or medical recovery.
+- Compensatory Off
+Compensatory Off is provided to employees who are required to work on scheduled holidays, weekly rest days, or approved non-working days due to business requirements.
+a. Eligibility and Approval:
+Compensatory Off is granted only when prior written approval has been obtained from management. Unauthorized work on non-working days does not automatically qualify for compensatory leave.
+b. Usage:
+Compensatory Off must be availed within a specified period from the date it is earned and is subject to managerial approval based on operational needs. Unused compensatory off may lapse if not utilized within the prescribed timeframe.
 
-- Employees are entitled to 10 Sick Leave days per year.
+- Statutory and Special Leave
+The Company complies fully with all applicable statutory and special leave requirements as mandated by local, state, and national labor laws. This includes, but is not limited to, public holidays, jury duty, military service, family and medical leave, and other legally protected absences.
 
-- Sick Leave may be availed without prior approval but must be informed to the manager.
+Statutory leave will be administered strictly in accordance with legal requirements, and where such leave provides greater benefits than Company policy, the statutory provisions shall prevail.
 
-- A medical certificate is required for Sick Leave exceeding 2 consecutive days.
+- LEAVE APPROVAL AND ADMINISTRATION
+All leave requests are subject to review and approval by the employee’s immediate supervisor and are administered by the HR Department to ensure consistency, fairness, and compliance with Company policy and legal obligations. Extended or exceptional leave requests may require additional approvals from senior management.
 
-- Sick Leave can be carried forward up to a maximum of 30 days.
+HR is responsible for maintaining accurate leave records and monitoring leave usage.
 
-- Sick Leave is not encashable.
+- ABUSE OF LEAVE
+Abuse of leave includes, but is not limited to, frequent unscheduled absences, repeated patterned leave, falsification of records, misuse of sick leave, or failure to follow leave procedures. Abuse of leave may result in corrective or disciplinary action in accordance with the Company’s disciplinary policy, up to and including termination of employment.
 
-- Misuse of Sick Leave may result in disciplinary action.
-
-Earned Leave (EL)
-
-- Earned Leave is designed for planned or long-duration leave.
-
-- Employees earn 1.5 Earned Leave days per month.
-
-- Earned Leave can be availed after completing 3 months of service.
-
-- Earned Leave must be taken for a minimum of 3 consecutive days.
-
-- Prior manager approval is mandatory.
-
-- Earned Leave can be carried forward up to 45 days.
-
-- Excess balance beyond the cap will be forfeited.
-
-- Earned Leave may be encashed at the time of separation as per company policy.
-
-Maternity Leave
-
-- Maternity Leave is provided in accordance with applicable labor laws.
-
-- Female employees are entitled to 26 weeks of paid maternity leave.
-
-- Leave may be availed before and/or after childbirth.
-
-- Employees must notify HR at least 8 weeks in advance.
-
-- Medical documentation is mandatory.
-
-- Maternity Leave does not impact other leave balances.
-
-- All employment benefits remain active during maternity leave.
-
-Leave Without Pay (LWP)
-
-- Leave Without Pay applies when all applicable leave balances are exhausted.
-
-- LWP requires prior approval from both Manager and HR.
-
-- LWP days will be deducted from monthly salary.
-
-- Extended LWP may impact performance reviews and bonuses.
-
-- Unauthorized absence may be treated as disciplinary action.
-
-Leave Approval Process
-
-- All leave requests must be submitted through the official HR portal.
-
-- Approval flow:
-
- - Employee → Reporting Manager → HR (if applicable)
-
-- Leaves taken without approval may be marked as Leave Without Pay.
-
-- HR reserves the right to audit leave usage.
+- POLICY REVIEW AND AMENDMENT
+The Company reserves the right to revise, amend, or withdraw this Leave Policy at any time to align with business requirements or changes in applicable laws. Employees will be notified of any material changes, and the updated policy will supersede all previous versions.

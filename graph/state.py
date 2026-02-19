@@ -10,11 +10,13 @@ class HRState(TypedDict, total=False):
     # 🔹 Planner
     steps: List[str]
     error: Dict[str, str]         # {"code": "...", "message": "..."}
+    
 
     # 🔹 RAG
     rag_context: str
     policy_citations: List[str]
-
+    rag_chunks: List[str]
+    
     # 🔹 SQL
     sql_result: Any
 

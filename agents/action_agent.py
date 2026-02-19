@@ -187,8 +187,7 @@ Rules:
 
     response.raise_for_status()
 
+    mcp_resp = response.json()
     return {
-        "action_status": response.json().get(
-            "message", "Leave applied successfully"
-        )
+        "action_status": f"{mcp_resp.get('message', 'Leave applied successfully')}. Remaining leave: {mcp_resp.get('remaining_balance', 'N/A')}"
     }

@@ -1,11 +1,114 @@
 Work From Home Policy
 
-- Work From Home (WFH) is subject to manager approval.
+- PURPOSE
+The purpose of this Work From Home (WFH) Policy is to establish comprehensive guidelines governing remote work arrangements for employees based in India. The Company recognizes that remote work can enhance flexibility, employee engagement, and operational resilience while also requiring clear standards to ensure accountability, productivity, data protection, and compliance with applicable Indian labour and data protection laws. This policy aims to balance employee flexibility with business continuity and organizational effectiveness.
 
-- Employees must ensure availability during official working hours.
+- APPLICABILITY AND SCOPE
+This policy applies to all employees employed by the Company in India whose job responsibilities can be reasonably and effectively performed from a remote location. Work From Home arrangements may be approved on a full-time, hybrid, or temporary basis depending on role suitability, client requirements, regulatory obligations, and business needs. This policy must be read together with the Company’s Attendance, Leave, Performance Management, Code of Conduct, and Data Security policies.
 
-- Productivity and deliverables must not be impacted.
+- POLICY STATEMENT
+Work From Home is a flexible work arrangement offered at the sole discretion of the Company and does not constitute a contractual right or guaranteed benefit. Approval to work remotely may be withdrawn, modified, or suspended at any time due to operational requirements, compliance obligations, performance concerns, or security risks. Employees approved for WFH are expected to maintain the same standards of professionalism, ethical conduct, productivity, and policy compliance as those working from Company offices.
 
-- The company reserves the right to revoke WFH privileges.
+- ELIGIBILITY CRITERIA
+Eligibility for Work From Home is determined based on multiple factors, including the nature of the role, data sensitivity, customer interaction requirements, individual performance history, attendance record, and demonstrated ability to work independently with minimal supervision. Employees are generally required to have completed their probationary period before being considered for WFH, unless otherwise approved by management due to exceptional circumstances or business continuity requirements.
 
-- WFH does not alter attendance or leave policies.
+The Company reserves the right to designate certain roles as ineligible for WFH based on operational, regulatory, or security considerations.
+
+- TYPES OF WORK FROM HOME ARRANGEMENTS
+Work From Home may be approved in different formats, including permanent remote work, hybrid arrangements combining office and remote work, or temporary work-from-home arrangements for specific periods. The duration, frequency, and structure of the arrangement will be defined at the time of approval and may be reviewed periodically to ensure alignment with business needs and performance outcomes.
+
+- REQUEST AND APPROVAL PROCESS
+Employees seeking to work from home must submit a formal request to their reporting manager, outlining the proposed work arrangement, duration, work schedule, and anticipated impact on job responsibilities, collaboration, and deliverables. All requests are subject to managerial and HR review and approval. Approval may be granted with specific conditions related to availability, reporting, communication, performance tracking, or security requirements.
+
+Failure to comply with approved conditions may result in modification or revocation of WFH privileges.
+
+- WORKING HOURS, SCHEDULING, AND AVAILABILITY
+Employees working from home are required to adhere to their assigned working hours in accordance with Company policy and applicable Shops and Establishments Act provisions. Employees must remain accessible and responsive during designated core business hours and attend meetings, calls, and collaborative sessions as required.
+Work From Home (WFH) arrangements and provisions for an employee are as follows:
+
+1. Policy Statement:
+WFH is a flexible work arrangement offered at the Company's sole discretion and does not constitute a contractual right. Approval may be withdrawn, modified, or suspended at any time. Employees approved for WFH must maintain the same standards of professionalism, ethical conduct, productivity, and policy compliance as office-based employees.
+
+2. Eligibility Criteria:
+Eligibility is based on factors including role nature, data sensitivity, customer interaction, individual performance history, attendance record, and demonstrated ability to work independently. Employees generally must have completed their probationary period, unless approved by management for exceptional circumstances or business continuity. Certain roles may be designated as ineligible.
+
+3. Types of WFH Arrangements:
+WFH may be approved as permanent remote work, hybrid arrangements, or temporary arrangements for specific periods. The duration, frequency, and structure are defined at approval and subject to periodic review.
+
+4. Request and Approval Process:
+Employees must submit a formal request to their manager, outlining the proposed arrangement, duration, schedule, and anticipated impact. Requests are subject to managerial and HR review and approval, which may include specific conditions. Failure to comply can result in modification or revocation of WFH privileges.
+
+5. Home Work Environment, Health, and Safety:
+Employees are responsible for maintaining a safe, secure, and ergonomically suitable home work environment and must follow basic health and safety practices. Work-related injuries during approved hours must be reported promptly.
+
+6. Leave, Breaks, and Unavailability:
+WFH employees remain subject to the Company’s Leave and Attendance policies and must apply for leave if unwell, unavailable, or unable to perform duties during scheduled hours.
+
+7. Monitoring, Compliance, and Audit:
+The Company reserves the right to monitor work output, system access, and usage of Company resources to ensure compliance with performance expectations, security standards, and laws. Monitoring will be lawful, reasonable, and proportionate.
+
+8. Modification or Termination of WFH Arrangements:
+The Company may modify, suspend, or terminate WFH arrangements at any time based on business needs, legal/regulatory requirements, performance concerns, or security risks. Employees may also request changes with reasonable notice.
+
+9. Violations and Disciplinary Action:
+Non-compliance with the WFH policy or related Company policies may result in disciplinary action, including revocation of WFH privileges, corrective action, or termination of employment.
+
+10. Communication and Collaboration Expectations:
+Employees are expected to maintain regular communication using Company-approved platforms and participate in virtual meetings, training, and discussions. Professional conduct in all communications is mandatory.
+
+11. Data Security, Confidentiality, and Privacy:
+Employees must strictly adhere to Data Security and Confidentiality policies, limiting access to authorized systems, secure networks, and approved devices. Preventing unauthorized access to confidential information in the remote environment is crucial, and any security incident must be reported immediately.
+
+12. Equipment, Technology, and Company Assets:
+The Company may provide necessary equipment (e.g., laptops, access credentials). All Company-provided equipment remains Company property, must be used solely for official purposes, and must be returned upon request or separation.
+
+13. Working Hours, Scheduling, and Availability:
+Employees must adhere to assigned working hours, remain accessible and responsive during designated core business hours (10:00 AM - 4:00 PM), and attend required meetings. Reliable internet connectivity and a functional remote setup are required. Deviations from working hours must be communicated in advance.
+
+14. Attendance and Time Management:
+Remote employees must comply with Company attendance and time-tracking requirements, accurately recording hours through designated systems. Misuse or inaccurate reporting may lead to disciplinary action.
+
+15. Performance Management and Accountability:
+WFH employees are held to the same performance expectations, productivity standards, quality benchmarks, and delivery timelines as office-based employees. Performance assessments are based on work output, adherence to deadlines, responsiveness, collaboration, and objective achievement. Continued failure to meet expectations may result in corrective action, including withdrawal of WFH privileges.
+Employees are responsible for maintaining reliable internet connectivity and a functional remote work setup. Any anticipated deviation from working hours or availability must be communicated to the reporting manager in advance. Overtime, where applicable, must be pre-approved and will be governed by applicable labour laws.
+
+- ATTENDANCE AND TIME MANAGEMENT
+Employees working remotely must comply with Company attendance and time-tracking requirements, including accurately recording working hours through designated systems. Work From Home does not eliminate attendance obligations, and misuse of WFH arrangements or inaccurate time reporting may result in disciplinary action.
+
+- PERFORMANCE MANAGEMENT AND ACCOUNTABILITY
+Employees working from home are held to the same performance expectations, productivity standards, quality benchmarks, and delivery timelines as office-based employees. Performance assessments will be based on work output, adherence to deadlines, responsiveness, collaboration, and achievement of agreed objectives.
+
+Where performance issues are identified, the Company may provide feedback, coaching, or support. Continued failure to meet performance expectations may result in corrective action, including the withdrawal of WFH privileges or further disciplinary measures.
+
+- COMMUNICATION AND COLLABORATION EXPECTATIONS
+Consistent and effective communication is critical for successful remote work. Employees are expected to maintain regular communication with managers, team members, and stakeholders using Company-approved communication platforms. Participation in virtual meetings, training sessions, performance reviews, and team discussions is mandatory unless otherwise approved.
+
+Employees must ensure professional conduct in all communications and remain proactive in sharing updates, progress, and challenges.
+
+- DATA SECURITY, CONFIDENTIALITY, AND PRIVACY
+Employees working from home must strictly adhere to the Company’s Data Security and Confidentiality policies and comply with the Digital Personal Data Protection Act, 2023 (DPDP Act). Access to Company data must be limited to authorized systems, secure networks, and approved devices.
+
+Employees are responsible for preventing unauthorized access to confidential information in the remote work environment. Any actual or suspected data breach, loss of equipment, or security incident must be reported immediately to the Company’s IT or HR team.
+
+- EQUIPMENT, TECHNOLOGY, AND COMPANY ASSETS
+The Company may provide laptops, access credentials, or other tools necessary for remote work. All Company-provided equipment remains Company property and must be used solely for official purposes. Employees are responsible for the proper use, maintenance, and protection of Company assets and must return them upon request or separation from employment.
+
+- HOME WORK ENVIRONMENT, HEALTH, AND SAFETY
+Employees are responsible for maintaining a safe, secure, and ergonomically suitable work environment at home. While working remotely, employees must follow basic health and safety practices to reduce the risk of injury or illness.
+
+Any work-related injury or incident occurring during approved working hours must be reported promptly in accordance with Company procedures and applicable Indian labour laws.
+
+- LEAVE, BREAKS, AND UNAVAILABILITY
+Employees working from home remain subject to the Company’s Leave and Attendance policies. Work From Home does not substitute for approved leave. Employees must apply for leave if they are unwell, unavailable, or unable to perform work duties during scheduled working hours.
+
+- MONITORING, COMPLIANCE, AND AUDIT
+The Company reserves the right to monitor work output, system access, and usage of Company resources to ensure compliance with performance expectations, security standards, and applicable laws. Monitoring activities will be conducted in a lawful, reasonable, and proportionate manner.
+
+- MODIFICATION OR TERMINATION OF WFH ARRANGEMENTS
+The Company may modify, suspend, or terminate Work From Home arrangements at any time based on business needs, legal or regulatory requirements, performance concerns, or security risks. Employees may also request changes to their WFH arrangement by providing reasonable notice.
+
+- VIOLATIONS AND DISCIPLINARY ACTION
+Non-compliance with this policy or any related Company policies may result in disciplinary action, including revocation of WFH privileges, corrective action, or termination of employment, in accordance with Company disciplinary procedures and applicable Indian laws.
+
+- POLICY REVIEW AND GOVERNANCE
+This policy will be reviewed periodically to ensure continued relevance, operational effectiveness, and compliance with Indian labour laws and regulatory requirements. The Company reserves the right to amend, revise, or withdraw this policy at its discretion.

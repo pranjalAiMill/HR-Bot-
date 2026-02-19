@@ -57,11 +57,12 @@ graph.set_entry_point("planner")
 
 graph.add_conditional_edges(
     "planner",
-    lambda state: state["steps"],
+    lambda state: state["steps"][0] if state.get("steps") else "summary",
     {
         "RAG": "rag",
         "SQL": "sql",
         "ACTION": "action",
+        "summary": "summary",  # handles error/empty steps gracefully
     }
 )
 
