@@ -1,0 +1,23 @@
+candidate_id,position,status,assigned_hr
+C001,Software Engineer,Screening,E101
+C002,Software Engineer,Joined,HR004
+C003,HR Executive,Joined,MK002
+C004,Data Analyst,Screening,MK002
+C005,HR Executive,Screening,OP001
+C006,Finance Associate,Screening,IT001
+C007,Finance Associate,Offer,E101
+C008,HR Executive,Offer,HR003
+C009,HR Executive,Offer,HR003
+C010,Data Analyst,Offer,HR003
+C011,Data Analyst,Screening,HR003
+C012,Finance Associate,Joined,E104
+C013,HR Executive,Joined,E104
+C014,Data Analyst,Interview,HR001
+C015,Data Analyst,Offer,E102
+C016,HR Executive,Interview,FN003
+C017,Finance Associate,Screening,E102
+C018,Finance Associate,Screening,E105
+C019,Data Analyst,Screening,FN002
+C020,Software Engineer,Screening,E106
+C021,Software Engineer,Screening,E107
+C022,Software Engineer,Interview,E007

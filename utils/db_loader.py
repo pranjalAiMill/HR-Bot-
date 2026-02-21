@@ -14,6 +14,47 @@ def build_db():
     # ----------------------------
     with engine.begin() as conn:
         conn.execute(text("""
+        CREATE TABLE IF NOT EXISTS payslips (
+            emp_id TEXT,
+            month TEXT,
+            basic REAL,
+            hra REAL,
+            bonus REAL,
+            pf REAL,
+            tax REAL,
+            deductions REAL,
+            net_salary REAL
+        )
+        """))
+
+        conn.execute(text("""
+        CREATE TABLE IF NOT EXISTS timesheets (
+            emp_id TEXT,
+            date TEXT,
+            hours INTEGER,
+            project TEXT
+        )
+        """))    
+
+        conn.execute(text("""
+        CREATE TABLE IF NOT EXISTS performance_goals (
+            emp_id TEXT,
+            goal_title TEXT,
+            status TEXT,
+            deadline TEXT
+        )
+        """))  
+
+        conn.execute(text("""
+        CREATE TABLE IF NOT EXISTS recruitment (
+            candidate_id TEXT,
+            position TEXT,
+            status TEXT,
+            assigned_hr TEXT
+        )
+        """))  
+
+        conn.execute(text("""
         CREATE TABLE IF NOT EXISTS employees (
             emp_id TEXT PRIMARY KEY,
             name TEXT,
@@ -35,6 +76,16 @@ def build_db():
             balance INTEGER
         )
         """))
+
+        conn.execute(text("""
+        CREATE TABLE IF NOT EXISTS chat_history (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            session_id TEXT NOT NULL,
+            role TEXT NOT NULL,
+            content TEXT NOT NULL,
+            created_at TEXT NOT NULL
+        )
+    """))
 
         conn.execute(text("""
         CREATE TABLE IF NOT EXISTS leave_log (
@@ -65,6 +116,26 @@ def build_db():
     if os.path.exists("data/leaves.csv"):
         pd.read_csv("data/leaves.csv").to_sql(
             "leaves", engine, if_exists="replace", index=False
+        )
+
+    if os.path.exists("data/payslips.csv"):
+        pd.read_csv("data/payslips.csv").to_sql(
+            "payslips", engine, if_exists="replace", index=False
+        )
+
+    if os.path.exists("data/timesheets.csv"):
+        pd.read_csv("data/timesheets.csv").to_sql(
+            "timesheets", engine, if_exists="replace", index=False
+        )
+
+    if os.path.exists("data/performance_goals.csv"):
+        pd.read_csv("data/performance_goals.csv").to_sql(
+            "performance_goals", engine, if_exists="replace", index=False
+        )
+
+    if os.path.exists("data/recruitment.csv"):
+        pd.read_csv("data/recruitment.csv").to_sql(
+            "recruitment", engine, if_exists="replace", index=False
         )
 
     return engine

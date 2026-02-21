@@ -92,7 +92,8 @@ def text2sql_agent(state):
 
     prompt = f"""
 You are an expert Text-to-SQL system.
-
+IMPORTANT: Do NOT query the chat_history table.
+It is for internal use only and contains no HR data.
 Use ONLY the database schema provided below.
 Do NOT invent tables or columns.
 

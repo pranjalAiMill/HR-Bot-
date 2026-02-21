@@ -107,6 +107,7 @@ import os
 from mcp_server.auth import require_token
 from utils.emailer import send_leave_email
 from utils.logger import get_logger
+from services.jira_service import create_leave_issue
 
 logger = get_logger("mcp_leave")
 
@@ -199,6 +200,20 @@ def apply_leave():
                             
         conn.commit()
 
+        # 8️⃣ Create Jira issue (NON-BLOCKING)
+        issue_key = None
+        try:
+            jira_resp = create_leave_issue(
+                emp_id=emp_id,
+                start_date=start_dt.date().isoformat(),
+                end_date=end_dt.date().isoformat(),
+                days=days
+            )
+            issue_key = jira_resp.get("key")
+
+        except Exception:
+            logger.exception("Failed to create Jira issue")
+
         # 6️⃣ Persist leave_log to CSV
         df = pd.read_sql("SELECT * FROM leave_log", conn)
         os.makedirs("data", exist_ok=True)
@@ -234,6 +249,6 @@ HR Bot
         logger.exception("Failed to send leave confirmation email")
 
     return jsonify({
-        "message": "Leave applied successfully",
-        "remaining_balance": total_after
-    })
+    "message": f"Leave applied successfully. Jira issue: {issue_key}" if issue_key else "Leave applied successfully (Jira failed)",
+    "remaining_balance": total_after
+})

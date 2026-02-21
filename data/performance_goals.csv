@@ -1,0 +1,45 @@
+emp_id,goal_title,status,deadline
+E101,Improve code coverage,Pending,2026-06-30
+E101,Reduce bug count,Completed,2026-06-30
+E101,Deliver feature X,In Progress,2026-06-30
+E102,Improve code coverage,Completed,2026-06-30
+E102,Reduce bug count,Pending,2026-06-30
+E102,Deliver feature X,Pending,2026-06-30
+HR001,Complete assigned KPIs,Completed,2026-06-30
+E103,Improve code coverage,Pending,2026-06-30
+E103,Reduce bug count,In Progress,2026-06-30
+E103,Deliver feature X,In Progress,2026-06-30
+E104,Improve code coverage,Completed,2026-06-30
+E104,Reduce bug count,Pending,2026-06-30
+E104,Deliver feature X,Completed,2026-06-30
+E105,Improve code coverage,Completed,2026-06-30
+E105,Reduce bug count,Pending,2026-06-30
+E105,Deliver feature X,Pending,2026-06-30
+E106,Improve code coverage,Pending,2026-06-30
+E106,Reduce bug count,Pending,2026-06-30
+E106,Deliver feature X,Completed,2026-06-30
+HR002,Complete assigned KPIs,In Progress,2026-06-30
+HR003,Complete assigned KPIs,In Progress,2026-06-30
+HR004,Complete assigned KPIs,In Progress,2026-06-30
+FN001,Reduce operational cost,In Progress,2026-06-30
+FN001,Improve reporting accuracy,Completed,2026-06-30
+FN001,Optimize tax compliance,Pending,2026-06-30
+FN002,Reduce operational cost,In Progress,2026-06-30
+FN002,Improve reporting accuracy,Pending,2026-06-30
+FN002,Optimize tax compliance,Pending,2026-06-30
+FN003,Reduce operational cost,In Progress,2026-06-30
+FN003,Improve reporting accuracy,In Progress,2026-06-30
+FN003,Optimize tax compliance,Pending,2026-06-30
+MK001,Complete assigned KPIs,In Progress,2026-06-30
+MK002,Complete assigned KPIs,In Progress,2026-06-30
+MK003,Complete assigned KPIs,Pending,2026-06-30
+OP001,Complete assigned KPIs,Pending,2026-06-30
+OP002,Complete assigned KPIs,In Progress,2026-06-30
+OP003,Complete assigned KPIs,Completed,2026-06-30
+IT001,Complete assigned KPIs,In Progress,2026-06-30
+E107,Improve code coverage,Pending,2026-06-30
+E107,Context Awareness,Completed,2026-06-30
+E107,Reduce bug count,In Progress,2026-06-30
+E007,Reduce operational cost,In Progress,2026-06-30
+E007,Improve reporting accuracy,Pending,2026-06-30
+E007,Optimize tax compliance,Pending,2026-06-30

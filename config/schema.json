@@ -34,5 +34,62 @@
       "end_date": "Leave end date",
       "total_leaves_after": "Balance after deduction"
     }
+  },
+  "payslips": {
+    "description": "Monthly payslip breakdown for employees",
+    "columns": {
+      "emp_id": "Employee ID (TEXT, foreign key)",
+      "month": "Payslip month (TEXT, e.g., January 2026)",
+      "basic": "Basic salary component (REAL)",
+      "hra": "House Rent Allowance (REAL)",
+      "bonus": "Bonus component (REAL)",
+      "pf": "Provident Fund deduction (REAL)",
+      "tax": "Tax deduction (REAL)",
+      "deductions": "Total deductions (REAL)",
+      "net_salary": "Net salary after deductions (REAL)"
+    }
+  },
+
+  "timesheets": {
+    "description": "Daily timesheet entries for employees",
+    "columns": {
+      "emp_id": "Employee ID (TEXT, foreign key)",
+      "date": "Work date (DATE)",
+      "hours": "Number of hours worked (INTEGER)",
+      "project": "Project name (TEXT)"
+    }
+  },
+
+  "performance_goals": {
+    "description": "Performance goals assigned to employees",
+    "columns": {
+      "emp_id": "Employee ID (TEXT, foreign key)",
+      "goal_title": "Title of the goal (TEXT)",
+      "status": "Goal status (TEXT: In Progress, Completed, Pending)",
+      "deadline": "Goal deadline (DATE)"
+    }
+  },
+
+  "recruitment": {
+    "description": "Recruitment tracking data",
+    "columns": {
+      "candidate_id": "Candidate ID (TEXT)",
+      "position": "Job position applied for (TEXT)",
+      "status": "Recruitment stage (TEXT: Screening, Interview, Offer, Joined)",
+      "assigned_hr": "HR employee ID handling the candidate (TEXT, foreign key to employees.emp_id)"
+    }
+  },
+
+  "chat_history": {
+    "description": "Stores conversation history per session for context-aware responses",
+    "columns": {
+      "id": "Auto-increment identifier (INTEGER, primary key)",
+      "session_id": "Unique session identifier (TEXT)",
+      "role": "Message sender: user or assistant (TEXT)",
+      "content": "Message content (TEXT)",
+      "created_at": "Timestamp of the message (TEXT)"
+    }
   }
 }
+
+

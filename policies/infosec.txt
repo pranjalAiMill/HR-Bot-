@@ -1,0 +1,63 @@
+Information Security (Infosec) Support Policy
+
+1. Purpose
+The purpose of this policy is to establish a clear, structured, and enforceable framework for identifying, reporting, managing, and resolving cybersecurity and data protection incidents within the organization. As digital threats continue to evolve in sophistication and frequency, it is essential that every individual within the company understands their role in protecting organizational assets. This policy ensures that the company is equipped to respond swiftly and effectively to any security incident, minimizing potential harm to operations, reputation, and stakeholder trust. It also ensures alignment with applicable data protection legislation and industry best practices.
+
+2. Scope
+This policy applies universally to all individuals who interact with company systems, networks, or data in any capacity. This includes full-time and part-time employees, temporary staff, interns, contractors, consultants, and third-party service providers. It covers all devices — whether company-issued or personal — used to access company resources, and applies regardless of the employee's location, whether on-site, remote, or traveling internationally.
+
+3. Policy Statement
+The Company recognizes that information security is a shared responsibility that cannot rest solely with the IT department. Every person with access to company data or systems plays a critical role in maintaining the integrity, confidentiality, and availability of that information. The Company is firmly committed to building and sustaining a proactive security culture — one where awareness is high, reporting is encouraged, and swift action is the norm.
+
+To support this commitment, the Company maintains a dedicated Infosec support mechanism with the following core objectives: to detect and assess security risks before they escalate into major incidents; to prevent unauthorized access, data theft, or data loss; to contain, investigate, and remediate incidents in a timely and structured manner; to protect the privacy of employees, clients, and stakeholders; and to maintain full compliance with applicable legislation including GDPR, POPIA, and any other relevant regional or international data protection frameworks.
+
+4. Reportable Incidents
+Prompt reporting is the cornerstone of effective incident management. All employees are required to immediately report any of the following upon detection or even reasonable suspicion. Phishing attempts, suspicious emails, unexpected links, or unusual attachments must always be flagged, even if the employee did not click or engage with them. Any confirmed or suspected data breaches involving personal, confidential, or commercially sensitive data must be reported without delay. Lost, stolen, or misplaced company devices — including laptops, mobile phones, tablets, and USB drives — must be reported immediately, as these carry significant exposure risk. Unauthorized or suspicious access to company systems, accounts, or physical premises must be escalated promptly. Any alerts relating to malware, ransomware, spyware, or unusual system behavior warrant immediate reporting. Compromised or suspected compromised passwords or login credentials must be flagged and changed at once. Employees are also encouraged to report any situation that simply "doesn't feel right," even if they cannot clearly define the concern. A culture where instincts are respected leads to faster detection and reduced impact.
+
+5. Incident Severity & Response Framework
+a. Critical : Confirmed data breach, active ransomware, or full system compromise.
+- Immediate escalation to IT Security, HR, Legal, and Senior Leadership required.
+- External authorities and regulators notified where legally mandated.
+- All affected systems to be isolated immediately.
+b. High : Unauthorized access, successful phishing, or significant data exposure.
+- Urgent investigation initiated within two (2) hours.
+- Affected systems isolated and access revoked pending review.
+- HR involved where employee conduct or negligence is implicated.
+c. Medium : Suspicious activity, unusual login patterns, or potential policy violations.
+- IT Security review to be completed within twenty-four (24) hours.
+- HR notified if the matter involves employee behavior or conduct.
+- Monitoring and logging intensified during investigation period.
+d. Low : General security queries, minor anomalies, or guidance requests.
+- Addressed through standard IT support channels within forty-eight (48) hours.
+- Logged and monitored for patterns or recurrence.
+
+6. Reporting Timeline
+All suspected security incidents must be reported to the employee's direct line manager and the IT Security team simultaneously, preferably within one hour of detection. The IT Security team will acknowledge receipt of the report within two hours and conduct an initial triage to assign a severity level within four hours. Depending on the severity assigned, an appropriate response and escalation path will be activated. A formal post-incident review will be completed within five business days of resolution to document lessons learned and prevent recurrence. Employees are encouraged to use the designated incident reporting portal, email, or emergency security hotline as appropriate. Verbal reports must always be followed up in writing. Delayed reporting without reasonable justification is considered a policy breach and will be addressed accordingly.
+
+7. Employee Responsibilities
+All employees are expected to uphold a defined set of security responsibilities as a condition of their employment and continued access to company systems. Employees must create strong, complex, and unique passwords for all company accounts and update them at regular intervals as directed by IT policy. Multi-Factor Authentication must be enabled on all company-issued and approved personal devices used to access company resources. Under no circumstances should login credentials be shared with colleagues, managers, clients, or any third party. Confidential and personal data must be handled with the utmost care, shared only on a need-to-know basis, and stored only in approved, secure locations. Remote workers must connect exclusively through secure, approved networks or the company's Virtual Private Network. All devices must be locked immediately when left unattended, even for short periods. Employees must complete the mandatory annual Information Security Awareness Training and any additional training prescribed following an incident. Full cooperation with any security investigation is required, including providing access to devices, accounts, or communications as requested by authorized personnel.
+
+8. Manager & Leadership Responsibilities
+- Model and enforce security best practices within their respective teams at all times.
+- Create a psychologically safe environment where employees feel comfortable reporting concerns.
+- Escalate any reported incident immediately without attempting independent investigation of critical matters.
+- Ensure all team members complete required security awareness training during onboarding and annually thereafter.
+- Include security compliance as a standing agenda item in regular team communications.
+- Allocate adequate time and resources to support IT Security initiatives and awareness campaigns.
+- Ensure departing employees have all system access revoked promptly upon exit.
+- Champion the security culture at a leadership level, reinforcing its importance across the business.
+
+9. Consequences of Non-Compliance
+- Non-compliance with this policy will result in disciplinary action appropriate to the nature and severity of the violation.
+- Minor breaches may result in a formal written warning and mandatory remedial training.
+- Repeated or serious violations may result in suspension or termination of employment.
+- Deliberate misconduct, gross negligence, or criminal activity will be referred to law enforcement authorities.
+- Contractors and third-party vendors in breach of this policy may face immediate suspension of access and contract termination.
+- The Company reserves the right to pursue civil or legal remedies where losses or damages have occurred.
+- All disciplinary actions will be conducted in accordance with the Company's existing disciplinary procedure and applicable labor law.
+
+10. Confidentiality & Non-Retaliation
+The Company is committed to handling all incident reports and investigations with the highest level of discretion and confidentiality. Information relating to an incident will only be shared with those who have a legitimate need to know. Employees who report security incidents or concerns in good faith are fully protected under this policy and will not face any form of retaliation, victimization, or negative consequence as a result of their report. Any employee found to have retaliated against a colleague for making a genuine security report will face disciplinary action. The Company encourages a speak-up culture and views every report — however small — as a contribution to collective security.
+
+11. Policy Review & Continuous Improvement
+This policy will be formally reviewed on an annual basis by the HR and IT Security departments jointly, or sooner in the event of a significant security incident, major regulatory change, or substantial organizational restructuring. Feedback from employees, post-incident reviews, and external audits will be incorporated to ensure continuous improvement. All updates to this policy will be communicated company-wide and employees will be required to acknowledge the revised version.

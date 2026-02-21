@@ -147,20 +147,21 @@ import threading
 import requests
 import time
 import uuid
-
-from sqlalchemy import true
 import re
+import jwt
+
 from graph.hr_graph import hr_graph
 from utils.logger import get_logger
 from utils.vector_store import get_retriever
 from utils.db_loader import build_db
-from utils.user_context import get_user_context
+from utils.user_context import get_user_context, get_user_context_by_any
 from datetime import datetime
+from utils.session_store import get_history, save_history
 
 logger = get_logger("api")
 
 app = Flask(__name__)
-CORS(app)  # 🔹 REQUIRED for OpenWebUI
+CORS(app)
 
 # ----------------------------------------------------
 # 🔹 Startup Initialization
@@ -179,15 +180,53 @@ except Exception:
     logger.exception("Vector store not ready")
     raise
 
+
+# ----------------------------------------------------
+# 🔹 Helper: Extract user email from JWT token
+# ----------------------------------------------------
+def resolve_user_from_request(data: dict) -> dict:
+
+    # ── Strategy 1: UUID from JWT ──────────────────────────────────
+    auth_header = request.headers.get("Authorization", "")
+    if auth_header.startswith("Bearer "):
+        token = auth_header.split(" ", 1)[1].strip()
+        try:
+            decoded = jwt.decode(token, options={"verify_signature": False}, algorithms=["HS256"])
+            user_id = decoded.get("id") or decoded.get("sub") or ""
+            logger.info(f"JWT decoded → id={user_id}")
+            if user_id:
+                ctx = get_user_context(user_id)
+                if ctx:
+                    logger.info(f"User: {ctx}")
+                    return ctx
+        except Exception as e:
+            logger.warning(f"JWT decode failed: {e}")
+
+    # # ── Strategy 2: user object in body (Pipeline/Slack) ──────────
+    # openwebui_user = data.get("user") or {}
+    # if openwebui_user:
+    #     ctx = get_user_context_by_any(openwebui_user)
+    #     if ctx:
+    #         logger.info(f"User resolved via body: {ctx}")
+    #         return ctx
+
+    # logger.warning("Could not resolve user identity")
+    # return {}
+
+
+# ----------------------------------------------------
+# 🔹 Health Check
+# ----------------------------------------------------
 @app.route("/health")
 def health_check():
-    return {"status": "healthy", "timestamp": datetime.utcnow()}
+    return {"status": "healthy", "timestamp": str(datetime.utcnow())}
 
 
 # ----------------------------------------------------
-# 🔹 OpenAI-Compatible: List Models (REQUIRED)
+# 🔹 OpenAI-Compatible: List Models
 # ----------------------------------------------------
 @app.route("/v1/models", methods=["GET"])
+@app.route("/models", methods=["GET"])
 def list_models():
     return jsonify({
         "data": [
@@ -199,31 +238,16 @@ def list_models():
         ]
     })
 
-# ----------------------------------------------------
-# 🔹 OpenWebUI compatibility alias
-# ----------------------------------------------------
-@app.route("/models", methods=["GET"])
-def list_models_root():
-    return jsonify({
-        "data": [
-            {
-                "id": "hr-bot",
-                "object": "model",
-                "owned_by": "internal"
-            }
-        ]
-    })
 
 # ----------------------------------------------------
-# 🔹 OpenAI-Compatible: Chat Completions
+# 🔹 OpenAI-Compatible: Chat Completions (core logic)
 # ----------------------------------------------------
-@app.route("/v1/chat/completions", methods=["POST"])
-def openwebui_chat():
+def handle_chat_completions():
     data = request.json or {}
     messages = data.get("messages", [])
     model = data.get("model", "hr-bot")
 
-    # 🔹 Extract last user message
+    # Extract last user message
     user_message = None
     for msg in reversed(messages):
         if msg.get("role") == "user":
@@ -233,49 +257,42 @@ def openwebui_chat():
     if not user_message:
         return jsonify({"error": "No user message found"}), 400
 
-# Ignore OpenWebUI auto "follow-up suggestions" prompts
-    if user_message and user_message.lstrip().startswith("### Task:"):
+    # Ignore OpenWebUI auto follow-up suggestion prompts
+    if user_message.lstrip().startswith("### Task:"):
         return jsonify({
             "id": f"chatcmpl-{uuid.uuid4()}",
             "object": "chat.completion",
             "created": int(time.time()),
             "model": model,
-            "choices": [
-                {
-                    "index": 0,
-                    "message": {
-                        "role": "assistant",
-                        "content": "[]"
-                    },
-                    "finish_reason": "stop"
-                }
-            ],
+            "choices": [{"index": 0, "message": {"role": "assistant", "content": "[]"}, "finish_reason": "stop"}],
             "usage": {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}
         })
 
-# 🔹 Optional OpenWebUI user context
-    openwebui_user = data.get("user", {})
-    logger.info(f"OpenWebUI incoming user field: {data.get('user')}")
-    user_ctx = get_user_context(openwebui_user.get("id"))
-    if not user_ctx:
-        m = re.search(r"\b[A-Z]{1,3}\d{3}\b", (user_message or "").upper())
-        if m:
-            user_ctx = {"emp_id": m.group(0), "role": "employee"}
-    
+    # ✅ Resolve user identity
+    user_ctx = resolve_user_from_request(data)
+
+    # Build chat history from messages (exclude current message)
+    chat_history = [
+        (msg["role"], msg["content"])
+        for msg in messages[:-1]
+        if msg.get("role") in ("user", "assistant")
+    ][-10:]
+
+    logger.info(f"Chat history: {len(chat_history)} messages")
+    logger.info(f"Final user context: {user_ctx}")
+    logger.info(f"Query: {user_message}")
+
     state = {
         "query": user_message,
-        "user": user_ctx
+        "user": user_ctx,
+        "chat_history": chat_history
     }
 
-    logger.info(
-        f"OpenWebUI | model={model} | user={user_ctx} | query={user_message}"
-    )
-    
     try:
         result = hr_graph.invoke(state)
         answer = result.get("final_answer", "")
     except Exception:
-        logger.exception("OpenWebUI processing failed")
+        logger.exception("Graph processing failed")
         answer = "⚠️ Something went wrong while processing your request."
 
     return jsonify({
@@ -286,10 +303,7 @@ def openwebui_chat():
         "choices": [
             {
                 "index": 0,
-                "message": {
-                    "role": "assistant",
-                    "content": answer
-                },
+                "message": {"role": "assistant", "content": answer},
                 "finish_reason": "stop"
             }
         ],
@@ -301,41 +315,46 @@ def openwebui_chat():
     })
 
 
-# ----------------------------------------------------
-# 🔹 OpenWebUI compatibility alias (chat)
-# ----------------------------------------------------
+@app.route("/v1/chat/completions", methods=["POST"])
+def openwebui_chat():
+    return handle_chat_completions()
+
+
 @app.route("/chat/completions", methods=["POST"])
 def openwebui_chat_alias():
-    return openwebui_chat()
+    return handle_chat_completions()
 
 
 # ----------------------------------------------------
-# 🔹 BASIC API (Postman / curl)
+# 🔹 Basic API (Postman / curl)
 # ----------------------------------------------------
-# @app.route("/chat", methods=["POST"])
-# def chat():
-#     data = request.json or {}
-#     query = data.get("query")
-
-#     if not query:
-#         return jsonify({"error": "query is required"}), 400
-
-#     result = hr_graph.invoke({"query": query})
-#     return jsonify({"response": result.get("final_answer", "")})
 @app.route("/chat", methods=["POST"])
 def chat():
     data = request.json or {}
     query = data.get("query")
     user = data.get("user", {})
 
+    logger.info(f"[chat] Requested for user: {user}")
+
     if not query:
         return jsonify({"error": "query is required"}), 400
 
+    session_id = data.get("session_id") or str(uuid.uuid4())
+    chat_history = get_history(session_id)
+
     result = hr_graph.invoke({
         "query": query,
-        "user": user
+        "user": user,
+        "chat_history": chat_history,
     })
-    return jsonify({"response": result.get("final_answer", "")})
+
+    answer = result.get("final_answer", "")
+
+    save_history(session_id, "user", query)
+    save_history(session_id, "assistant", answer)
+
+    return jsonify({"response": answer, "session_id": session_id})
+
 
 # ----------------------------------------------------
 # 🔹 Slack Command Endpoint
@@ -346,9 +365,7 @@ def slack_command():
     slack_user_id = request.form.get("user_id")
     response_url = request.form.get("response_url")
 
-    logger.info(
-        f"Slack query received | user_id={slack_user_id} | query={user_query}"
-    )
+    logger.info(f"Slack | user_id={slack_user_id} | query={user_query}")
 
     user_ctx = get_user_context(slack_user_id)
 
@@ -363,28 +380,19 @@ def slack_command():
             result = hr_graph.invoke(state)
             requests.post(
                 response_url,
-                json={
-                    "response_type": "ephemeral",
-                    "text": result.get("final_answer", "")
-                },
+                json={"response_type": "ephemeral", "text": result.get("final_answer", "")},
                 timeout=5
             )
         except Exception:
             logger.exception("Slack processing failed")
             requests.post(
                 response_url,
-                json={
-                    "response_type": "ephemeral",
-                    "text": "⚠️ Something went wrong. Please try again later."
-                }
+                json={"response_type": "ephemeral", "text": "⚠️ Something went wrong. Please try again later."}
             )
 
     threading.Thread(target=process).start()
+    return {"response_type": "ephemeral", "text": "⏳ Processing your request..."}
 
-    return {
-        "response_type": "ephemeral",
-        "text": "⏳ Processing your request..."
-    }
 
 # ----------------------------------------------------
 # 🔹 Main

@@ -96,6 +96,15 @@ def planner_agent(state):
     role = user.get("role", "employee")
     emp_id = user.get("emp_id")
 
+    # 🆕 Build history context
+    chat_history = state.get("chat_history", [])
+    history_text = ""
+    if chat_history:
+        recent = chat_history[-6:]
+        history_text = "\n".join(
+            f"{r.upper()}: {c}" for r, c in recent
+        )
+
     logger.info(f"Incoming query: {query} | role={role} | emp_id={emp_id}")
 
     # ----------------------------
@@ -149,6 +158,10 @@ def planner_agent(state):
     prompt = f"""
 You are an expert HR with over 20 years of experience.
 You have to decide execution steps for the HR query:
+
+Recent conversation (for context):
+{history_text if history_text else "None"}
+
 "{query}"
 
 Return STRICT JSON array using only:

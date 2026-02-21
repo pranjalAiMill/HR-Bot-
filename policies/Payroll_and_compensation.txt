@@ -1,0 +1,50 @@
+Payroll & Compensation Support Policy 
+
+1. Purpose
+This policy exists to ensure that every employee is compensated accurately, fairly, and on time — and that the processes behind that compensation are transparent, compliant, and consistently applied. It covers all aspects of payroll administration, salary structure, statutory deductions, adjustments, and reimbursements. The Company is committed to maintaining the highest standards of payroll integrity and ensuring that employees have a clear understanding of how their compensation is calculated and managed.
+
+2. Payroll Administration
+Payroll is processed on a monthly cycle, with salaries credited directly to employees' registered bank accounts in accordance with the official payroll schedule published at the start of each financial year. Payslips are issued electronically through the HRMS portal on or before the last working day of each month, and employees are strongly encouraged to review them carefully upon receipt to identify any discrepancies at the earliest possible stage.
+The HR and Finance departments work in close coordination to ensure that payroll is processed without error, delay, or omission. A dedicated payroll team oversees the end-to-end process, from data collation and verification to final disbursement and reconciliation. 
+The following key operational guidelines apply to all employees:
+- Any changes to registered bank account details must be submitted to HR in writing at least 15 working days before the next payroll cycle to ensure the update is captured in time.
+- All salary processing is carried out in strict compliance with applicable statutory and labor regulations, including the Payment of Wages Act and other relevant legislation.
+- Payroll queries or discrepancies must be raised formally with HR within 7 working days of payslip issuance. Queries raised beyond this window may not be addressed retroactively for the same month.
+- In the event of any delays or system-related disruptions, employees will be proactively notified by HR with revised credit timelines and an explanation of the cause.
+- Employees who have not received their salary within two working days of the scheduled credit date should contact HR or Finance immediately with their employee ID and bank account details for prompt investigation.
+
+3. Salary Components
+An employee's total compensation package is structured based on their role, grade, and employment terms. The components that may form part of the compensation structure are outlined below. 
+- Basic Salary: Core component; basis for statutory calculations
+- House Rent Allowance (HRA): Calculated as a percentage of Basic Salary
+- Special Allowance: Flexible component based on role and grade
+- Performance Bonus: Linked to appraisal outcomes and business performance
+- Provident Fund (PF): Statutory contribution by both employee and employer
+- Professional Tax: Deducted as per applicable state regulations
+- Income Tax (TDS): Deducted monthly based on tax slab and declared investments
+- Other Statutory Contributions: As applicable by law or location
+Employees are required to submit their investment declarations and supporting documents within the timelines prescribed by Finance to avoid excess or shortfall in TDS deductions. Failure to do so may result in higher tax deductions in the final months of the financial year.
+
+4. Salary Adjustments
+Net salary credited each month may vary from the previous month due to a number of documented and authorized factors. These include Leave Without Pay, tax revisions, late attendance penalties, insurance premium deductions, and recovery of salary advances. All adjustments will be clearly reflected and itemized in the employee's payslip.
+Leave Without Pay (LWP) is applied when an employee is absent beyond their available leave balance or is absent without prior approval. 
+The formula used to calculate LWP deductions is:
+(Monthly Gross Salary ÷ Total Working Days in the Month) × Number of LWP Days
+Employees who believe an adjustment has been applied incorrectly are encouraged to raise a formal query with HR within 7 working days of receiving their payslip. All adjustments are authorized by the appropriate level of management before processing.
+
+5. Reimbursements
+The Company reimburses employees for eligible work-related expenses incurred genuinely in the course of their professional duties. This reflects the Company's commitment to ensuring that employees are not financially disadvantaged as a result of carrying out their responsibilities. Reimbursable expenses may include travel costs, accommodation, client entertainment, mobile and internet allowances, and other categories as defined in the employee's offer letter or applicable reimbursement policy.
+To ensure timely and accurate processing, employees must submit their reimbursement claims through the HRMS portal or the prescribed claim form, accompanied by all required supporting documents such as original receipts, tax invoices, boarding passes, or travel records. 
+The following guidelines apply to all reimbursement submissions:
+- Incomplete or undocumented claims will not be processed and will be returned to the employee for correction and resubmission within the stipulated window.
+- Approved reimbursements are processed and credited to the employee's registered bank account within 7 to 10 working days of final claim approval.
+- Claims submitted after the prescribed monthly deadline may be held over to the following month's processing cycle without exception, unless prior approval for a late submission has been granted by HR.
+- Employees are strongly advised to retain personal copies of all submitted documents until the reimbursement has been confirmed and credited, as originals may be required for audit or verification purposes.
+- Reimbursement claims that are found to be fraudulent, exaggerated, or unsupported by genuine documentation will be treated as a serious disciplinary matter and may result in recovery of amounts paid and further action in accordance with the Company's code of conduct.
+
+6. Confidentiality
+Compensation and payroll information is strictly confidential. Employees must not discuss, disclose, or share details of their own or any other employee's salary, benefits, deductions, or compensation structure with unauthorized individuals — whether inside or outside the organization.
+Any breach of payroll confidentiality will be treated as a serious disciplinary matter and handled in accordance with the Company's disciplinary procedure. Access to payroll data is restricted to authorized HR, Finance, and Senior Leadership personnel only, and all such access is logged and monitored.
+
+7. Policy Review
+This policy will be formally reviewed on an annual basis by the HR and Finance departments jointly, or earlier where necessitated by significant changes in legislation, organizational structure, payroll systems, or business operations. Employee feedback gathered through query trends, exit interviews, and engagement surveys will also be considered during the review process to ensure the policy remains practical, fair, and relevant. All updates to this policy will be communicated company-wide in a timely manner, and employees will be required to formally acknowledge the revised version through the HRMS portal or equivalent mechanism.

@@ -1,4 +1,4 @@
-from typing import TypedDict, Optional, List, Any, Dict
+from typing import TypedDict, Optional, List, Any, Dict,Tuple
 
 
 class HRState(TypedDict, total=False):
@@ -6,6 +6,9 @@ class HRState(TypedDict, total=False):
     query: str
     user: Dict[str, Any]          # {"emp_id": "...", "role": "..."}
     slack_user_id: str
+
+    # 🆕 Chat history
+    chat_history: List[Tuple[str, str]] 
 
     # 🔹 Planner
     steps: List[str]
