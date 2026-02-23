@@ -95,10 +95,22 @@ def build_db():
             total_leaves_before INTEGER NOT NULL,
             leaves_requested INTEGER NOT NULL,
             start_date TEXT NOT NULL,
-            end_date TEXT NOT NULL,
-            total_leaves_after INTEGER NOT NULL
+            end_date TEXT NOT NULL, 
+            status TEXT NOT NULL DEFAULT 'PENDING_HR',
+            jira_issue_key TEXT,
+            total_leaves_after INTEGER
         )
         """))
+
+
+    # Helper: only seeds if table is currently empty
+    def _seed_if_empty(csv_path: str, table: str):
+        if not os.path.exists(csv_path):
+            return
+        with engine.connect() as conn:
+            count = conn.execute(text(f"SELECT COUNT(*) FROM {table}")).scalar()
+        if count == 0:
+            pd.read_csv(csv_path).to_sql(table, engine, if_exists="append", index=False)
 
     # ----------------------------
     # 2️⃣ Seed master data (safe)
@@ -113,10 +125,11 @@ def build_db():
             "salaries", engine, if_exists="replace", index=False
         )
 
-    if os.path.exists("data/leaves.csv"):
-        pd.read_csv("data/leaves.csv").to_sql(
-            "leaves", engine, if_exists="replace", index=False
-        )
+    # if os.path.exists("data/leaves.csv"):
+    #     pd.read_csv("data/leaves.csv").to_sql(
+    #         "leaves", engine, if_exists="replace", index=False
+    #     )
+    
 
     if os.path.exists("data/payslips.csv"):
         pd.read_csv("data/payslips.csv").to_sql(
@@ -137,5 +150,9 @@ def build_db():
         pd.read_csv("data/recruitment.csv").to_sql(
             "recruitment", engine, if_exists="replace", index=False
         )
+
+    
+    # ✅ leaves — seed ONLY ONCE, never overwrite live balance data
+    _seed_if_empty("data/leaves.csv", "leaves")
 
     return engine

@@ -112,8 +112,14 @@ Rules:
 - If role = employee:
     - Restrict results to emp_id = '{emp_id}'
     - Do NOT return data for other employees
-- Queries on leave_log MUST always be filtered by emp_id
-- Queries on leave_log MUST always be filtered by emp_id
+- If role = hr:
+    - Can query ALL employees — do NOT filter leave_log by emp_id
+    - leave_log status values are exactly: 'PENDING_HR' or 'APPROVED' (not 'Pending')
+    - Can query ALL employees — NEVER filter by emp_id = '{emp_id}' unless the user specifically asks about one employee
+    - For queries like "show me leaves of all employees" or "show me leaves of employees" → do NOT add any WHERE emp_id filter
+    - Only filter by emp_id if the user explicitly mentions a specific employee
+    - When JOINING employees with leave_log, ONLY return emp_id from employees table
+    - Use emp_id as the employee identifier, do NOT return name field to avoid duplicates
 - If asked about multiple pieces of information, use separate queries or JOIN tables
 - DO NOT concatenate multiple SELECT statements
 

@@ -44,8 +44,8 @@ def get_retriever():
     _retriever = db.as_retriever(
         search_type="mmr",
         search_kwargs={
-            "k": 15,
-            "fetch_k": 40
+            "k": 20,
+            "fetch_k": 50
         }
     )
     logger.info("Vector retriever ready")

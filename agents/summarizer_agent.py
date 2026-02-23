@@ -196,7 +196,7 @@ and now asks "what is the policy" → answer about casual leave policy
         answer += "| Policy Name | Policy Content |\n"
         answer += "|-------------|----------------|\n"
 
-        for i, citation in enumerate(filtered_citations[:3]):  # max 3 sources
+        for i, citation in enumerate(filtered_citations[:4]):  # max 3 sources
             chunk_content = filtered_chunks[i].strip().replace("\n", " ")[:200]
             if len(filtered_chunks[i].strip()) > 200:
                 chunk_content += "..."

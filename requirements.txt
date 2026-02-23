@@ -10,5 +10,5 @@ pandas
 sqlalchemy
 pydantic
 requests
-flask-cors 
-open-webui
+flask-cors
+sentence-transformers

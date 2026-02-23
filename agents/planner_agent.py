@@ -80,11 +80,12 @@
 from utils.logger import get_logger
 from config.llm_factory import get_llm
 import json
+import re 
 
 logger = get_logger("planner")
 llm = get_llm()
 
-ALLOWED_STEPS = {"RAG", "SQL", "ACTION"}
+ALLOWED_STEPS = {"RAG", "SQL", "ACTION", "APPROVE", "REJECT"}
 
 def planner_agent(state):
     logger.info("Planner agent started")
@@ -134,6 +135,22 @@ def planner_agent(state):
                     "message": "You can only apply leave for yourself."
                 }
             }
+    if "reject" in q and role != "hr":
+        return {
+            "steps": [],
+            "error": {"code": "UNAUTHORIZED", "message": "Only HR can reject leaves."}
+        }
+
+    if "approve" in q:
+        if role != "hr":
+            return {
+                "steps": [],
+                "error": {
+                    "code": "UNAUTHORIZED",
+                    "message": "Only HR can approve leaves."
+                }
+            }
+
     
     # ----------------------------
     # ✅ DETERMINISTIC ROUTING
@@ -145,10 +162,19 @@ def planner_agent(state):
     if "apply leave" in q:
         return {"steps": ["ACTION"]}
 
-    if "balance" in q or "salary" in q:
+    if "balance" in q or "salary" in q or "pending" in q:
         return {"steps": ["SQL"]}
 
+    if "approve" in q and role == "hr":
+        has_emp = bool(re.search(r"\be\d{3}\b", q))
+        if has_emp:
+            return {"steps": ["APPROVE"]}
 
+    if "reject" in q and role == "hr":
+        has_emp = bool(re.search(r"\be\d{3}\b", q))
+        if has_emp:
+            return {"steps": ["REJECT"]}
+        
     # ----------------------------
     # 🔁 LLM FALLBACK (RARE)
     # ----------------------------
@@ -177,6 +203,18 @@ Return STRICT JSON array using only:
           an operation — submitting, applying, cancelling, or booking 
           something right now.
 
+- APPROVE: Use ONLY when HR is explicitly approving a leave request —
+           by employee name, employee ID, number of days, date, or any
+           specific criteria that identifies which leave to approve.
+           Examples: "approve the 2 day leave", "approve leave for E007",
+           "approve the March 3rd leave"
+
+- REJECT: Use ONLY when HR is explicitly rejecting a leave request —
+          by employee name, employee ID, number of days, date, or any
+          specific criteria that identifies which leave to reject.
+          Examples: "reject the 2 day leave", "reject leave for E007",
+          "reject the March 3rd leave", "decline leave for E107"
+
 Critical distinction for the word "apply":
 - "apply leave", "apply for leave", "I want to apply" → ACTION
 - "which policies apply", "what rules apply", "consequences apply" → RAG
@@ -186,7 +224,7 @@ Decision rule:
 - If the query is about ME / MY personal data → SQL  
 - If the query wants to DO something right now → ACTION
 - When in doubt → RAG    
- 
+
 Rules:
 - No markdown
 - No explanation

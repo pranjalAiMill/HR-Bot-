@@ -32,6 +32,8 @@
       "leaves_requested": "Number of leaves requested",
       "start_date": "Leave start date",
       "end_date": "Leave end date",
+      "status" : "Leave approved or not",
+      "jira_issue_key": "Issue key",
       "total_leaves_after": "Balance after deduction"
     }
   },

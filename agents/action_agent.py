@@ -136,7 +136,7 @@ return STRICT JSON in the following format:
 Rules:
 - Do NOT guess emp_id
 - Resolve relative dates like "tomorrow", "next Monday"
-- Use ISO-8601 date format
+- Use ISO-8601 date formats
 - No markdown
 - No explanation
 - Return ONLY JSON
@@ -189,5 +189,6 @@ Rules:
 
     mcp_resp = response.json()
     return {
-        "action_status": f"{mcp_resp.get('message', 'Leave applied successfully')}. Remaining leave: {mcp_resp.get('remaining_balance', 'N/A')}"
+        # "action_status": f"{mcp_resp.get('message', 'Leave applied successfully')}. Remaining leave: {mcp_resp.get('remaining_balance', 'N/A')}"
+        "action_status": mcp_resp.get('message', 'Leave applied successfully')
     }
