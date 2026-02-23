@@ -153,6 +153,10 @@ and now asks "what is the policy" → answer about casual leave policy
 - Use history to resolve: "it", "that", "the policy", "same", "again", "more"
 - Do NOT fetch unrelated policies when history gives clear context
 - Answer ONLY the current query in context of history
+- Use sql_columns to map each value correctly.
+- Always display employee_id when present.
+- If action_status is present and contains words like "submitted", "updated", "approved", "already existed", "not allocated", display it EXACTLY as-is without rephrasing.
+- For all other responses (RAG, SQL), maintain your normal conversational HR tone.
 """
 
     logger.info(f"Summarizer prompt length: {len(prompt)} characters")
@@ -196,7 +200,7 @@ and now asks "what is the policy" → answer about casual leave policy
         answer += "| Policy Name | Policy Content |\n"
         answer += "|-------------|----------------|\n"
 
-        for i, citation in enumerate(filtered_citations[:4]):  # max 3 sources
+        for i, citation in enumerate(filtered_citations[:3]):  # max 3 sources
             chunk_content = filtered_chunks[i].strip().replace("\n", " ")[:200]
             if len(filtered_chunks[i].strip()) > 200:
                 chunk_content += "..."

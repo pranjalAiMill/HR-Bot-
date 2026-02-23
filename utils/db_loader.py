@@ -102,6 +102,43 @@ def build_db():
         )
         """))
 
+                # ✅ Redesigned timesheet_log
+        conn.execute(text("""
+        CREATE TABLE IF NOT EXISTS timesheet_log (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            emp_id TEXT NOT NULL,
+            project_id TEXT NOT NULL,
+            date TEXT NOT NULL,
+            hours INTEGER NOT NULL,
+            week_start TEXT NOT NULL,
+            week_end TEXT NOT NULL,
+            status TEXT NOT NULL DEFAULT 'PENDING_HR',
+            jira_issue_key TEXT,
+            approved_by TEXT,
+            approved_at TEXT,
+            created_at TEXT NOT NULL,
+            updated_at TEXT NOT NULL,
+            UNIQUE(emp_id, project_id, date)
+        )"""))
+
+                # ✅ Projects master table
+        conn.execute(text("""
+        CREATE TABLE IF NOT EXISTS projects (
+            project_id TEXT PRIMARY KEY,
+            name TEXT NOT NULL,
+            description TEXT
+        )"""))
+
+        # ✅ Employee ↔ Project allocations
+        conn.execute(text("""
+        CREATE TABLE IF NOT EXISTS project_allocations (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            emp_id TEXT NOT NULL,
+            project_id TEXT NOT NULL,
+            hours_per_week INTEGER NOT NULL,
+            UNIQUE(emp_id, project_id)
+        )"""))
+
 
     # Helper: only seeds if table is currently empty
     def _seed_if_empty(csv_path: str, table: str):
@@ -136,10 +173,10 @@ def build_db():
             "payslips", engine, if_exists="replace", index=False
         )
 
-    if os.path.exists("data/timesheets.csv"):
-        pd.read_csv("data/timesheets.csv").to_sql(
-            "timesheets", engine, if_exists="replace", index=False
-        )
+    # if os.path.exists("data/timesheets.csv"):
+    #     pd.read_csv("data/timesheets.csv").to_sql(
+    #         "timesheets", engine, if_exists="replace", index=False
+    #     )
 
     if os.path.exists("data/performance_goals.csv"):
         pd.read_csv("data/performance_goals.csv").to_sql(
@@ -151,8 +188,16 @@ def build_db():
             "recruitment", engine, if_exists="replace", index=False
         )
 
+    if os.path.exists("data/projects.csv"):
+        pd.read_csv("data/projects.csv").to_sql("projects", engine, if_exists="replace", index=False)
+
+    if os.path.exists("data/project_allocations.csv"):
+        pd.read_csv("data/project_allocations.csv").to_sql("project_allocations", engine, if_exists="replace", index=False)
+
+
     
     # ✅ leaves — seed ONLY ONCE, never overwrite live balance data
     _seed_if_empty("data/leaves.csv", "leaves")
+    _seed_if_empty("data/timesheets.csv", "timesheets")
 
     return engine

@@ -92,8 +92,7 @@ def text2sql_agent(state):
 
     prompt = f"""
 You are an expert Text-to-SQL system.
-IMPORTANT: Do NOT query the chat_history table.
-It is for internal use only and contains no HR data.
+IMPORTANT: Do NOT query the chat_history table or the timesheets table.
 Use ONLY the database schema provided below.
 Do NOT invent tables or columns.
 
@@ -104,24 +103,46 @@ User context:
 - emp_id = {emp_id}
 
 Rules:
-- Generate ONLY SELECT queries
-- Use exact table and column names
-- No explanations
-- No markdown
-- No comments
-- If role = employee:
-    - Restrict results to emp_id = '{emp_id}'
-    - Do NOT return data for other employees
-- If role = hr:
-    - Can query ALL employees — do NOT filter leave_log by emp_id
-    - leave_log status values are exactly: 'PENDING_HR' or 'APPROVED' (not 'Pending')
-    - Can query ALL employees — NEVER filter by emp_id = '{emp_id}' unless the user specifically asks about one employee
-    - For queries like "show me leaves of all employees" or "show me leaves of employees" → do NOT add any WHERE emp_id filter
-    - Only filter by emp_id if the user explicitly mentions a specific employee
-    - When JOINING employees with leave_log, ONLY return emp_id from employees table
-    - Use emp_id as the employee identifier, do NOT return name field to avoid duplicates
-- If asked about multiple pieces of information, use separate queries or JOIN tables
+- Generate ONLY a single SELECT query
+- Use exact table and column names from the schema above
+- No explanations, no markdown, no comments
 - DO NOT concatenate multiple SELECT statements
+
+Access control:
+- If role = employee:
+    - Restrict ALL results to emp_id = '{emp_id}'
+    - Do NOT return data for other employees
+    - Applies to: leave_log, timesheet_log, payslips, etc.
+- If role = hr:
+    - Can query ALL employees — do NOT filter by emp_id unless specifically asked
+    - leave_log status values are exactly: 'PENDING_HR' or 'APPROVED'
+    - timesheet_log status values are exactly: 'PENDING_HR' or 'APPROVED'
+
+Timesheet rules (IMPORTANT):
+- For ANY query about timesheets → ALWAYS use timesheet_log, NEVER use timesheets table
+- timesheet_log columns: id, emp_id, project_id, date, hours, week_start, week_end,
+  status, jira_issue_key, approved_by, approved_at, created_at, updated_at
+- There is NO 'project' column in timesheet_log — use project_id
+- To get the project name, JOIN with projects table: LEFT JOIN projects p ON tl.project_id = p.project_id
+- To get the employee name, JOIN with employees table: LEFT JOIN employees e ON tl.emp_id = e.emp_id
+ For ALL timesheet queries:
+- You MUST include tl.emp_id as employee_id in SELECT
+- You MUST include e.name as employee_name
+- You MUST include p.name as project
+- Never omit employee_id
+- Always show tl.emp_id, employee name (e.name), project name (p.name) in timesheet queries
+- Example:
+SELECT 
+    tl.emp_id AS employee_id,
+    e.name AS employee_name,
+    p.name AS project,
+    tl.date,
+    tl.hours,
+    tl.status,
+    tl.jira_issue_key
+FROM timesheet_log tl
+LEFT JOIN employees e ON tl.emp_id = e.emp_id
+LEFT JOIN projects p ON tl.project_id = p.project_id
 
 User question:
 {state['query']}

@@ -46,6 +46,7 @@ from agents.action_agent import action_agent
 from agents.summarizer_agent import summarizer_agent
 from agents.approve_agent import approve_agent
 from agents.reject_agent import reject_agent
+from agents.timesheet_agent import timesheet_agent 
 
 graph = StateGraph(HRState)
 
@@ -55,6 +56,7 @@ graph.add_node("sql", text2sql_agent)
 graph.add_node("action", action_agent)
 graph.add_node("approve", approve_agent) 
 graph.add_node("reject", reject_agent)
+graph.add_node("timesheet", timesheet_agent) 
 graph.add_node("summary", summarizer_agent)
 
 graph.set_entry_point("planner")
@@ -68,6 +70,7 @@ graph.add_conditional_edges(
         "ACTION": "action",
         "APPROVE": "approve",
         "REJECT": "reject", 
+        "TIMESHEET": "timesheet",
         "summary": "summary",  # handles error/empty steps gracefully
     }
 )
@@ -77,6 +80,7 @@ graph.add_edge("sql", "summary")
 graph.add_edge("action", "summary")
 graph.add_edge("approve", "summary") 
 graph.add_edge("reject", "summary")
+graph.add_edge("timesheet", "summary")
 # ✅ Summary is the ONLY terminal node
 graph.set_finish_point("summary")
 

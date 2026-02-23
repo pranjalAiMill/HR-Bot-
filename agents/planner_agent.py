@@ -85,7 +85,7 @@ import re
 logger = get_logger("planner")
 llm = get_llm()
 
-ALLOWED_STEPS = {"RAG", "SQL", "ACTION", "APPROVE", "REJECT"}
+ALLOWED_STEPS = {"RAG", "SQL", "ACTION", "TIMESHEET", "APPROVE", "REJECT"}
 
 def planner_agent(state):
     logger.info("Planner agent started")
@@ -151,6 +151,16 @@ def planner_agent(state):
                 }
             }
 
+    # Add this in the RBAC rules section
+    if "timesheet" in q and any(w in q for w in ["all", "list", "show", "view", "everyone", "employees"]):
+        if role != "hr":
+            return {
+                "steps": [],
+                "error": {
+                    "code": "UNAUTHORIZED",
+                    "message": "You can only view your own timesheets."
+                }
+            }
     
     # ----------------------------
     # ✅ DETERMINISTIC ROUTING
@@ -174,6 +184,13 @@ def planner_agent(state):
         has_emp = bool(re.search(r"\be\d{3}\b", q))
         if has_emp:
             return {"steps": ["REJECT"]}
+
+    if any(w in q for w in ["submit timesheet", "log timesheet", "timesheet for today", "timesheet for yesterday"]):
+        return {"steps": ["TIMESHEET"]}
+
+    # Add this for viewing:
+    if any(w in q for w in ["show", "list", "view"]) and "timesheet" in q:
+        return {"steps": ["SQL"]}
         
     # ----------------------------
     # 🔁 LLM FALLBACK (RARE)

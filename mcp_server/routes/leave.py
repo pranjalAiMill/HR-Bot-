@@ -170,6 +170,19 @@ def apply_leave():
         if total_before < days:
             abort(400, "Insufficient leave balance")
 
+        # 4️⃣ Block duplicate dates ← ADD THIS BLOCK
+        cursor.execute(
+            """
+            SELECT id FROM leave_log 
+            WHERE emp_id = ? 
+            AND status IN ('PENDING_HR', 'APPROVED')
+            AND (start_date <= ? AND end_date >= ?)
+            """,
+            (emp_id, end_dt.date().isoformat(), start_dt.date().isoformat())
+        )
+        if cursor.fetchone():
+            abort(400, "You already have a leave applied for this date range.")
+
         created_at = datetime.utcnow().isoformat()
 
         # 8️⃣ Create Jira issue (NON-BLOCKING)
