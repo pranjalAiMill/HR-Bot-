@@ -142,11 +142,8 @@ def approve_service_request():
     cursor = conn.cursor()
 
     try:
-        query  = "SELECT id, item, category, jira_issue_key FROM service_request_log WHERE emp_id = ? AND status = 'PENDING_HR'"
-        params = [emp_id]
-        if item:
-            query  += " AND item LIKE ?"
-            params.append(f"%{item}%")
+        query = "SELECT id, item, category, jira_issue_key FROM service_request_log WHERE emp_id = ? AND status = 'PENDING_HR' AND item LIKE ?"
+        params = [emp_id, f"%{item}%"]
         query += " ORDER BY created_at DESC LIMIT 1"
 
         cursor.execute(query, params)

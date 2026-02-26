@@ -13,6 +13,34 @@ def get_week_start(d: date) -> str:
     return (d - timedelta(days=d.weekday())).isoformat()
 
 
+def extract_item(query: str) -> str | None:
+    """
+    Extract item name from queries like:
+    - "approve the laptop service request of E107"
+    - "approve headphone request for E107"
+    - "approve Gemini API key access for E107"
+    """
+    patterns = [
+        # "approve the ITEM service request of/for EXXX"
+        r"approve\s+(?:the\s+)?(.+?)\s+service\s+request\s+(?:of|for)\s+E\d+",
+        # "approve ITEM request for EXXX"
+        r"approve\s+(?:the\s+)?(.+?)\s+request\s+(?:of|for)\s+E\d+",
+        # "approve ITEM for EXXX"
+        r"approve\s+(?:the\s+)?(.+?)\s+(?:of|for)\s+E\d+",
+    ]
+
+    for pattern in patterns:
+        match = re.search(pattern, query, re.IGNORECASE)
+        if match:
+            item = match.group(1).strip()
+            # Filter out generic words that aren't items
+            if item.lower() not in {"leave", "timesheet", "the", "a", "an", "request"}:
+                logger.info(f"Extracted item: {item}")
+                return item
+
+    return None
+
+
 def approve_agent(state):
     logger.info("Approve agent started")
 
@@ -33,7 +61,7 @@ def approve_agent(state):
     emp_id = match.group(0).upper()
     logger.info(f"emp_id extracted: {emp_id}")
 
-    # ── Route to correct MCP endpoint based on what is being approved ────────
+    # ── Route to correct MCP endpoint ────────────────────────────────────────
 
     if "timesheet" in q:
         today      = date.today()
@@ -48,10 +76,15 @@ def approve_agent(state):
         payload = {"emp_id": emp_id, "hr_emp_id": hr_emp_id}
 
     else:
-        # Anything else — headphone, laptop, software, access etc. → Service Request
-        logger.info("Approving service request")
+        # Service Request — extract item so correct request is approved
+        item = extract_item(query)
+        logger.info(f"Approving service request | item={item}")
         url     = MCP_SR_APPROVE_URL
-        payload = {"emp_id": emp_id, "hr_emp_id": hr_emp_id}
+        payload = {
+            "emp_id":    emp_id,
+            "hr_emp_id": hr_emp_id,
+            "item":      item  # ← passes item to MCP so correct request is approved
+        }
 
     logger.info(f"Calling MCP approve at {url} with payload: {payload}")
 

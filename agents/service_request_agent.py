@@ -1,5 +1,6 @@
 import json
 import os
+import re
 import requests
 
 from config.llm_factory import get_llm
@@ -16,14 +17,27 @@ VALID_CATEGORIES = {"software", "hardware", "asset", "access", "other"}
 def service_request_agent(state):
     logger.info("Service Request agent started")
 
-    user   = state.get("user", {})
-    emp_id = user.get("emp_id")
-    query  = state["query"]
+    user          = state.get("user", {})
+    session_emp_id = user.get("emp_id")
+    role           = user.get("role", "employee")
+    query          = state["query"]
 
-    if not emp_id:
+    if not session_emp_id:
         return {"action_status": "Could not determine your employee ID."}
 
-    # ── EMPLOYEE: SUBMIT ─────────────────────────────────────────────────────
+    # ── Resolve emp_id ────────────────────────────────────────────────────────
+    # If HR mentions another employee ID in the query → use that
+    # Otherwise → use session emp_id (employee submitting for themselves)
+    mentioned_emp_id = None
+    if role == "hr":
+        match = re.search(r'\bE\d{3,}\b', query, re.IGNORECASE)
+        if match:
+            mentioned_emp_id = match.group(0).upper()
+
+    emp_id = mentioned_emp_id if mentioned_emp_id else session_emp_id
+    logger.info(f"Resolved emp_id: {emp_id} (mentioned={mentioned_emp_id}, session={session_emp_id})")
+
+    # ── Extract service request details via LLM ───────────────────────────────
     prompt = f"""
 You are a Service Request Extraction Agent for an HR system.
 
@@ -75,7 +89,10 @@ Rules:
     if payload.get("category") not in VALID_CATEGORIES:
         payload["category"] = "other"
 
-    payload["emp_id"] = emp_id  # always from trusted session context, never from query
+    # ── emp_id resolution ─────────────────────────────────────────────────────
+    # Employee → always use session emp_id (can't submit for others)
+    # HR → use mentioned emp_id if present, else session emp_id
+    payload["emp_id"] = emp_id
 
     logger.info(f"Submitting service request payload: {payload}")
 

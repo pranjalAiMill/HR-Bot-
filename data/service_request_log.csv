@@ -3,3 +3,9 @@ id,emp_id,category,item,reason,status,jira_issue_key,created_at,updated_at
 2,E107,access,openai api key,for running llm,APPROVED,SR-1,2026-02-23T20:03:03.530354,2026-02-23T20:28:26.338167
 3,E107,hardware,webcam,to attend meetings,APPROVED,SR-2,2026-02-24T04:49:32.673375,2026-02-24T11:33:58.020531
 4,E107,hardware,laptop,to start work,APPROVED,SR-3,2026-02-24T11:58:36.791905,2026-02-24T14:01:38.628951
+5,E107,hardware,laptop,current one is broken,APPROVED,SR-4,2026-02-26T14:47:59.695193,2026-02-26T15:05:56.385070
+6,E107,access,Gemini API key,to make project,APPROVED,SR-5,2026-02-26T14:51:58.186991,2026-02-26T14:52:46.215415
+7,E107,software,Microsoft Office license,to acces microsoft,APPROVED,SR-6,2026-02-26T15:07:38.694716,2026-02-26T15:09:10.302086
+8,E107,access,AWS access,for deployment,PENDING_HR,SR-7,2026-02-26T15:08:35.173114,2026-02-26T15:08:35.173114
+9,E107,hardware,webcam,to attend video calls,PENDING_HR,SR-8,2026-02-26T15:12:27.885951,2026-02-26T15:12:27.885951
+10,E109,hardware,keyboard,current one not working,APPROVED,SR-9,2026-02-26T15:18:50.408516,2026-02-26T15:22:01.171946
