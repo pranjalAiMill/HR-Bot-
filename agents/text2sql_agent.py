@@ -144,6 +144,67 @@ FROM timesheet_log tl
 LEFT JOIN employees e ON tl.emp_id = e.emp_id
 LEFT JOIN projects p ON tl.project_id = p.project_id
 
+Service Request rules (IMPORTANT):
+- For ANY query about service requests → ALWAYS use service_request_log table
+- NEVER use leave_log for service request queries
+- service_request_log columns: id, emp_id, category, item, reason, status, jira_issue_key, created_at, updated_at
+- category values: software, hardware, asset, access, other
+- status values: PENDING_HR, APPROVED, REJECTED
+- To get employee name, JOIN with employees: LEFT JOIN employees e ON sr.emp_id = e.emp_id
+- For ALL service request queries always include emp_id and employee name
+- Example:
+SELECT
+    sr.emp_id AS employee_id,
+    e.name AS employee_name,
+    sr.category,
+    sr.item,
+    sr.reason,
+    sr.status,
+    sr.created_at
+FROM service_request_log sr
+LEFT JOIN employees e ON sr.emp_id = e.emp_id\
+
+Incident rules (IMPORTANT):
+- For ANY query about incidents → ALWAYS use the incidents table
+- incidents columns: id, incident_id, title, description, incident_type,
+  severity, status, reported_by, reported_at, occurred_at, resolved_at,
+  resolved_by, jira_issue_key
+- reported_by stores the emp_id of the employee who reported the incident
+- To get the reporter name, JOIN: LEFT JOIN employees e ON i.reported_by = e.emp_id
+- For ALL incident queries always include:
+    i.incident_id, i.title, i.incident_type, i.severity,
+    i.status, i.reported_by, e.name AS reported_by_name,
+    i.reported_at, i.jira_issue_key
+- Access control for incidents:
+    - role = employee → ALWAYS filter: WHERE i.reported_by = '{emp_id}'
+    - role = hr → NO filter, return all incidents
+- Example for HR (all incidents):
+SELECT
+    i.incident_id,
+    i.title,
+    i.incident_type,
+    i.severity,
+    i.status,
+    i.reported_by,
+    e.name AS reported_by_name,
+    i.reported_at,
+    i.jira_issue_key
+FROM incidents i
+LEFT JOIN employees e ON i.reported_by = e.emp_id
+ORDER BY i.reported_at DESC
+- Example for employee (own incidents only):
+SELECT
+    i.incident_id,
+    i.title,
+    i.incident_type,
+    i.severity,
+    i.status,
+    i.reported_at,
+    i.jira_issue_key
+FROM incidents i
+WHERE i.reported_by = '{emp_id}'
+ORDER BY i.reported_at DESC
+
 User question:
 {state['query']}
 """

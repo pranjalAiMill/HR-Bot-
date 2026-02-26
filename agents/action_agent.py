@@ -10,7 +10,7 @@ from utils.logger import get_logger
 logger = get_logger("action")
 
 llm = get_llm()
-MCP_URL = "http://localhost:9000/leave/apply"
+MCP_URL = os.getenv("MCP_LEAVE_APPLY_URL", "http://localhost:9000/leave/apply")
 
 
 def extract_emp_id_from_query(query: str):
@@ -96,13 +96,14 @@ Rules:
     logger.info(f"MCP HTTP status: {response.status_code}")
     logger.info(f"MCP response body: {response.text}")
 
-    if response.status_code == 400:
-        match = re.search(r"<p>(.*?)</p>", response.text)
-        error_msg = match.group(1) if match else "Bad request."
+    if response.status_code in (400, 404):
+        try:
+            error_msg = response.json().get("error", "Request failed.")
+        except Exception:
+            # Fallback if response is still HTML
+            match = re.search(r"<p>(.*?)</p>", response.text)
+            error_msg = match.group(1) if match else "Request failed."
         return {"action_status": error_msg}
-
-    if response.status_code == 404:
-        return {"action_status": "Employee or leave record not found."}
 
     response.raise_for_status()
 

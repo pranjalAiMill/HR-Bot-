@@ -155,7 +155,7 @@ and now asks "what is the policy" → answer about casual leave policy
 - Answer ONLY the current query in context of history
 - Use sql_columns to map each value correctly.
 - Always display employee_id when present.
-- If action_status is present and contains words like "submitted", "updated", "approved", "already existed", "not allocated", display it EXACTLY as-is without rephrasing.
+- If action_status is present, display it EXACTLY as-is without rephrasing.
 - For all other responses (RAG, SQL), maintain your normal conversational HR tone.
 """
 

@@ -10,8 +10,8 @@ from utils.logger import get_logger
 logger = get_logger("timesheet")
 llm    = get_llm()
 
-MCP_SUBMIT_URL  = "http://localhost:9000/timesheet/submit"
-MCP_APPROVE_URL = "http://localhost:9000/timesheet/approve"
+MCP_SUBMIT_URL  = os.getenv("MCP_TIMESHEET_SUBMIT_URL", "http://localhost:9000/timesheet/submit")
+MCP_APPROVE_URL = os.getenv("MCP_TIMESHEET_APPROVE_URL", "http://localhost:9000/timesheet/approve")
 
 
 def get_week_start(d: date) -> str:

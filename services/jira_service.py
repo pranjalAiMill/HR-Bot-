@@ -6,7 +6,8 @@ JIRA_EMAIL       = os.getenv("JIRA_EMAIL")
 JIRA_API_TOKEN   = os.getenv("JIRA_API_TOKEN")
 JIRA_PROJECT_KEY = os.getenv("JIRA_PROJECT_KEY", "HR")
 JIRA_TIMESHEET_PROJECT_KEY = os.getenv("JIRA_TIMESHEET_PROJECT_KEY", "TS")
-
+JIRA_SR_PROJECT_KEY = os.getenv("JIRA_SR_PROJECT_KEY", "SR")
+JIRA_INCIDENT_PROJECT_KEY  = os.getenv("JIRA_INCIDENT_PROJECT_KEY", "IR")
 
 def _auth():
     return (JIRA_EMAIL, JIRA_API_TOKEN)
@@ -196,3 +197,123 @@ def approve_timesheet_issue(issue_key):
     )
 
     response.raise_for_status()
+
+
+# ──────────────────────────────────────────────
+# Service Request
+# ──────────────────────────────────────────────
+
+def create_service_request_issue(emp_id: str, emp_name: str, category: str, item: str, reason: str):
+    url = f"{JIRA_BASE_URL}/rest/api/3/issue"
+    payload = {
+        "fields": {
+            "project":     {"key": JIRA_SR_PROJECT_KEY},
+            "summary":     f"Service Request - {emp_id} | {category.title()} | {item}",
+            "description": _make_description(
+                f"Employee : {emp_id} ({emp_name})\n"
+                f"Category : {category.title()}\n"
+                f"Item     : {item}\n"
+                f"Reason   : {reason}"
+            ),
+            "issuetype": {"name": "Task"},
+        }
+    }
+    response = requests.post(url, json=payload, auth=_auth(), headers=_headers())
+    response.raise_for_status()
+    return response.json()
+
+
+def approve_service_request_issue(issue_key: str):
+    transition_id = get_transition_id(issue_key, target_status="Done")
+    requests.post(
+        f"{JIRA_BASE_URL}/rest/api/3/issue/{issue_key}/transitions",
+        json={"transition": {"id": transition_id}},
+        auth=_auth(), headers=_headers()
+    ).raise_for_status()
+
+
+def reject_service_request_issue(issue_key: str, rejection_reason: str = ""):
+    transition_id = get_transition_id(issue_key, target_status="Done")
+    requests.post(
+        f"{JIRA_BASE_URL}/rest/api/3/issue/{issue_key}/transitions",
+        json={"transition": {"id": transition_id}},
+        auth=_auth(), headers=_headers()
+    ).raise_for_status()
+
+    comment_text = "❌ REJECTED by HR."
+    if rejection_reason:
+        comment_text += f"\nReason: {rejection_reason}"
+
+    requests.post(
+        f"{JIRA_BASE_URL}/rest/api/3/issue/{issue_key}/comment",
+        json={
+            "body": {
+                "type": "doc", "version": 1,
+                "content": [{"type": "paragraph", "content": [{"type": "text", "text": comment_text}]}]
+            }
+        },
+        auth=_auth(), headers=_headers()
+    )
+
+# ──────────────────────────────────────────────
+# INCIDENT  — dedicated INC project space
+# ──────────────────────────────────────────────
+
+_SEVERITY_TO_JIRA_PRIORITY = {
+    "Low":      "Low",
+    "Medium":   "Medium",
+    "High":     "High",
+    "Critical": "Highest"
+}
+
+_TYPE_LABEL = {
+    "IT":         "[IT]",
+    "HR":         "[HR]",
+    "FACILITIES": "[Facilities]",
+    "SAFETY":     "[Safety]",
+    "FINANCE":    "[Finance]",
+    "COMPLIANCE": "[Compliance]",
+    "OTHERS":     "[Other]",
+}
+
+
+def create_incident_issue(incident_id: str, emp_id: str, emp_name: str,
+                           title: str, description: str,
+                           incident_type: str, severity: str,
+                           occurred_at: str) -> dict:
+    """
+    Creates a Jira issue in the INCIDENT project space (JIRA_INCIDENT_PROJECT_KEY).
+    Completely separate from HR and TS projects.
+
+    Summary format:
+        [INC-2026-0001] [IT] Server outage in production
+    """
+    url = f"{JIRA_BASE_URL}/rest/api/3/issue"
+
+    type_label    = _TYPE_LABEL.get(incident_type.upper(), "[Other]")
+    jira_priority = _SEVERITY_TO_JIRA_PRIORITY.get(severity, "Medium")
+    summary       = f"[{incident_id}] {type_label} {title}"
+
+    body_text = (
+        f"Incident ID   : {incident_id}\n"
+        f"Reported By   : {emp_name} ({emp_id})\n"
+        f"Type          : {incident_type}\n"
+        f"Severity      : {severity}\n"
+        f"Occurred At   : {occurred_at}\n\n"
+        f"Description:\n{description}"
+    )
+
+    payload = {
+        "fields": {
+            "project":     {"key": JIRA_INCIDENT_PROJECT_KEY},   # ← INC project
+            "summary":     summary,
+            "description": _make_description(body_text),
+            "issuetype":   {"name": "Task"},
+            "priority":    {"name": jira_priority},
+            "labels":      ["incident", incident_type.lower(), severity.lower()]
+        }
+    }
+
+    response = requests.post(url, json=payload, auth=_auth(), headers=_headers())
+    response.raise_for_status()
+    return response.json()

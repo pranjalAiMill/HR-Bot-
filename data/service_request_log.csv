@@ -1,0 +1,5 @@
+id,emp_id,category,item,reason,status,jira_issue_key,created_at,updated_at
+1,E107,hardware,headphone,to attend meetings,PENDING_HR,,2026-02-23T19:59:01.132733,2026-02-23T19:59:01.132733
+2,E107,access,openai api key,for running llm,APPROVED,SR-1,2026-02-23T20:03:03.530354,2026-02-23T20:28:26.338167
+3,E107,hardware,webcam,to attend meetings,APPROVED,SR-2,2026-02-24T04:49:32.673375,2026-02-24T11:33:58.020531
+4,E107,hardware,laptop,to start work,APPROVED,SR-3,2026-02-24T11:58:36.791905,2026-02-24T14:01:38.628951

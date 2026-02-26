@@ -12,3 +12,4 @@ pydantic
 requests
 flask-cors
 sentence-transformers
+PyJWT

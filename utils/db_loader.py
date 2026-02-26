@@ -4,6 +4,15 @@ from sqlalchemy import create_engine, text
 
 DB_PATH = "db/hr.db"
 
+INCIDENT_TYPES_SEED = [
+    ("IT",         "IT Incident",         "Server, network, software, security breach"),
+    ("HR",         "HR Incident",         "Workplace conflict, misconduct, policy violation"),
+    ("FACILITIES", "Facilities Incident", "Power outage, AC failure, infrastructure, fire safety"),
+    ("SAFETY",     "Safety Incident",     "Physical injury, hazard, near-miss"),
+    ("FINANCE",    "Finance Incident",    "Fraud, billing error, data discrepancy"),
+    ("COMPLIANCE", "Compliance Incident", "Legal, regulatory, or audit issue"),
+    ("OTHERS",     "Other Incident",      "Anything that does not fit the above categories"),
+]
 
 def build_db():
     os.makedirs("db", exist_ok=True)
@@ -102,7 +111,7 @@ def build_db():
         )
         """))
 
-                # ✅ Redesigned timesheet_log
+        # ✅ Redesigned timesheet_log
         conn.execute(text("""
         CREATE TABLE IF NOT EXISTS timesheet_log (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -121,7 +130,7 @@ def build_db():
             UNIQUE(emp_id, project_id, date)
         )"""))
 
-                # ✅ Projects master table
+        # ✅ Projects master table
         conn.execute(text("""
         CREATE TABLE IF NOT EXISTS projects (
             project_id TEXT PRIMARY KEY,
@@ -139,6 +148,55 @@ def build_db():
             UNIQUE(emp_id, project_id)
         )"""))
 
+        # Service Request Log
+        conn.execute(text("""
+        CREATE TABLE IF NOT EXISTS service_request_log (
+            id             INTEGER PRIMARY KEY AUTOINCREMENT,
+            emp_id         TEXT    NOT NULL,
+            category       TEXT    NOT NULL,
+            item           TEXT    NOT NULL,
+            reason         TEXT    NOT NULL,
+            status         TEXT    NOT NULL DEFAULT 'PENDING_HR',
+            jira_issue_key TEXT,
+            created_at     TEXT    NOT NULL,
+            updated_at     TEXT    NOT NULL
+        )"""))
+
+        # Incident types master
+        conn.execute(text("""
+        CREATE TABLE IF NOT EXISTS incident_types (
+            type_id     TEXT PRIMARY KEY,
+            label       TEXT NOT NULL,
+            description TEXT
+        )"""))
+
+        # Incidents
+        conn.execute(text("""
+        CREATE TABLE IF NOT EXISTS incidents (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            incident_id     TEXT UNIQUE NOT NULL,
+            title           TEXT NOT NULL,
+            description     TEXT NOT NULL,
+            incident_type   TEXT NOT NULL REFERENCES incident_types(type_id),
+            severity        TEXT NOT NULL DEFAULT 'Medium',
+            status          TEXT NOT NULL DEFAULT 'Investigating',
+            reported_by     TEXT NOT NULL,
+            reported_at     TEXT NOT NULL,
+            occurred_at     TEXT NOT NULL,
+            resolved_at     TEXT,
+            resolved_by     TEXT,
+            jira_issue_key  TEXT
+        )"""))
+
+    # Seed incident_types once
+    with engine.connect() as conn:
+        count = conn.execute(text("SELECT COUNT(*) FROM incident_types")).scalar()
+        if count == 0:
+            conn.execute(
+                text("INSERT INTO incident_types (type_id, label, description) VALUES (:t, :l, :d)"),
+                [{"t": t, "l": l, "d": d} for t, l, d in INCIDENT_TYPES_SEED]
+            )
+            conn.commit()
 
     # Helper: only seeds if table is currently empty
     def _seed_if_empty(csv_path: str, table: str):
@@ -162,21 +220,10 @@ def build_db():
             "salaries", engine, if_exists="replace", index=False
         )
 
-    # if os.path.exists("data/leaves.csv"):
-    #     pd.read_csv("data/leaves.csv").to_sql(
-    #         "leaves", engine, if_exists="replace", index=False
-    #     )
-    
-
     if os.path.exists("data/payslips.csv"):
         pd.read_csv("data/payslips.csv").to_sql(
             "payslips", engine, if_exists="replace", index=False
         )
-
-    # if os.path.exists("data/timesheets.csv"):
-    #     pd.read_csv("data/timesheets.csv").to_sql(
-    #         "timesheets", engine, if_exists="replace", index=False
-    #     )
 
     if os.path.exists("data/performance_goals.csv"):
         pd.read_csv("data/performance_goals.csv").to_sql(
@@ -189,15 +236,18 @@ def build_db():
         )
 
     if os.path.exists("data/projects.csv"):
-        pd.read_csv("data/projects.csv").to_sql("projects", engine, if_exists="replace", index=False)
+        pd.read_csv("data/projects.csv").to_sql(
+            "projects", engine, if_exists="replace", index=False
+        )
 
     if os.path.exists("data/project_allocations.csv"):
-        pd.read_csv("data/project_allocations.csv").to_sql("project_allocations", engine, if_exists="replace", index=False)
+        pd.read_csv("data/project_allocations.csv").to_sql(
+            "project_allocations", engine, if_exists="replace", index=False
+        )
 
-
-    
     # ✅ leaves — seed ONLY ONCE, never overwrite live balance data
     _seed_if_empty("data/leaves.csv", "leaves")
     _seed_if_empty("data/timesheets.csv", "timesheets")
+    _seed_if_empty("data/service_request_log.csv", "service_request_log")
 
     return engine

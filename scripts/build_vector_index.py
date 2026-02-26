@@ -50,9 +50,8 @@ def build_index():
 
     all_chunks = []
     splitter = RecursiveCharacterTextSplitter(
-        chunk_size=1500,
-        chunk_overlap=300,
-        separators=["\n\n", "\n", "—", ".", " "]
+        chunk_size=1200,
+        chunk_overlap=150,
     )
 
     for policy_path in policy_files:
