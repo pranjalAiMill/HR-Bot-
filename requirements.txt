@@ -13,3 +13,6 @@ requests
 flask-cors
 sentence-transformers
 PyJWT
+gunicorn
+supervisor
+python-dotenv
