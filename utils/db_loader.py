@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 from sqlalchemy import create_engine, text
+from dotenv import load_dotenv
 
 DB_PATH = "db/hr.db"
 
@@ -14,9 +15,39 @@ INCIDENT_TYPES_SEED = [
     ("OTHERS",     "Other Incident",      "Anything that does not fit the above categories"),
 ]
 
+load_dotenv()
+_ENGINE = None
+
+
+def _get_database_url() -> str:
+    db_url = os.getenv("DATABASE_URL", "").strip()
+    if db_url:
+        # Some providers expose postgres:// which SQLAlchemy does not accept directly.
+        if db_url.startswith("postgres://"):
+            db_url = db_url.replace("postgres://", "postgresql+psycopg2://", 1)
+        elif db_url.startswith("postgresql://") and "+psycopg2" not in db_url:
+            db_url = db_url.replace("postgresql://", "postgresql+psycopg2://", 1)
+        return db_url
+    return f"sqlite:///{DB_PATH}"
+
+
+def get_engine():
+    global _ENGINE
+    if _ENGINE is None:
+        database_url = _get_database_url()
+        _ENGINE = create_engine(database_url, pool_pre_ping=True)
+    return _ENGINE
+
+
 def build_db():
-    os.makedirs("db", exist_ok=True)
-    engine = create_engine(f"sqlite:///{DB_PATH}")
+    database_url = _get_database_url()
+    is_sqlite = database_url.startswith("sqlite:")
+
+    if is_sqlite:
+        os.makedirs("db", exist_ok=True)
+
+    engine = get_engine()
+    id_pk = "INTEGER PRIMARY KEY AUTOINCREMENT" if is_sqlite else "BIGSERIAL PRIMARY KEY"
 
     # ----------------------------
     # 1️⃣ Create ALL tables first
@@ -88,7 +119,7 @@ def build_db():
 
         conn.execute(text("""
         CREATE TABLE IF NOT EXISTS chat_history (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id """ + id_pk + """,
             session_id TEXT NOT NULL,
             role TEXT NOT NULL,
             content TEXT NOT NULL,
@@ -98,7 +129,7 @@ def build_db():
 
         conn.execute(text("""
         CREATE TABLE IF NOT EXISTS leave_log (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id """ + id_pk + """,
             emp_id TEXT NOT NULL,
             created_at TEXT NOT NULL,
             total_leaves_before INTEGER NOT NULL,
@@ -114,7 +145,7 @@ def build_db():
         # ✅ Redesigned timesheet_log
         conn.execute(text("""
         CREATE TABLE IF NOT EXISTS timesheet_log (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id """ + id_pk + """,
             emp_id TEXT NOT NULL,
             project_id TEXT NOT NULL,
             date TEXT NOT NULL,
@@ -141,7 +172,7 @@ def build_db():
         # ✅ Employee ↔ Project allocations
         conn.execute(text("""
         CREATE TABLE IF NOT EXISTS project_allocations (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id """ + id_pk + """,
             emp_id TEXT NOT NULL,
             project_id TEXT NOT NULL,
             hours_per_week INTEGER NOT NULL,
@@ -151,7 +182,7 @@ def build_db():
         # Service Request Log
         conn.execute(text("""
         CREATE TABLE IF NOT EXISTS service_request_log (
-            id             INTEGER PRIMARY KEY AUTOINCREMENT,
+            id             """ + id_pk + """,
             emp_id         TEXT    NOT NULL,
             category       TEXT    NOT NULL,
             item           TEXT    NOT NULL,
@@ -173,7 +204,7 @@ def build_db():
         # Incidents
         conn.execute(text("""
         CREATE TABLE IF NOT EXISTS incidents (
-            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            id              """ + id_pk + """,
             incident_id     TEXT UNIQUE NOT NULL,
             title           TEXT NOT NULL,
             description     TEXT NOT NULL,

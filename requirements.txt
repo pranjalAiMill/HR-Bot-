@@ -16,3 +16,4 @@ PyJWT
 gunicorn
 supervisor
 python-dotenv
+psycopg2-binary

@@ -1,8 +1,10 @@
-import sqlite3
 from datetime import datetime
+from sqlalchemy import text
 
-DB_PATH = "db/hr.db"
+from utils.db_loader import get_engine
+
 MAX_HISTORY = 10  # last 5 turns (10 messages)
+ENGINE = get_engine()
 
 
 def get_history(session_id: str) -> list:
@@ -10,21 +12,17 @@ def get_history(session_id: str) -> list:
     if not session_id:
         return []
 
-    conn = sqlite3.connect(DB_PATH)
     try:
-        cursor = conn.cursor()
-        cursor.execute("""
+        with ENGINE.connect() as conn:
+            rows = conn.execute(text("""
             SELECT role, content FROM chat_history
-            WHERE session_id = ?
+            WHERE session_id = :session_id
             ORDER BY created_at DESC
-            LIMIT ?
-        """, (session_id, MAX_HISTORY))
-        rows = cursor.fetchall()
+            LIMIT :max_history
+        """), {"session_id": session_id, "max_history": MAX_HISTORY}).fetchall()
         return list(reversed(rows))  # [(role, content), ...]
     except Exception:
         return []
-    finally:
-        conn.close()
 
 
 def save_history(session_id: str, role: str, content: str):
@@ -32,34 +30,33 @@ def save_history(session_id: str, role: str, content: str):
     if not session_id:
         return
 
-    conn = sqlite3.connect(DB_PATH)
-    try:
-        conn.execute("""
+    with ENGINE.begin() as conn:
+        conn.execute(text("""
             INSERT INTO chat_history (session_id, role, content, created_at)
-            VALUES (?, ?, ?, ?)
-        """, (session_id, role, content, datetime.utcnow().isoformat()))
-        conn.commit()
+            VALUES (:session_id, :role, :content, :created_at)
+        """), {
+            "session_id": session_id,
+            "role": role,
+            "content": content,
+            "created_at": datetime.utcnow().isoformat(),
+        })
 
         # Prune old messages — keep only last MAX_HISTORY per session
-        conn.execute("""
+        conn.execute(text("""
             DELETE FROM chat_history
-            WHERE session_id = ? AND id NOT IN (
+            WHERE session_id = :session_id AND id NOT IN (
                 SELECT id FROM chat_history
-                WHERE session_id = ?
+                WHERE session_id = :session_id
                 ORDER BY created_at DESC
-                LIMIT ?
+                LIMIT :max_history
             )
-        """, (session_id, session_id, MAX_HISTORY))
-        conn.commit()
-    finally:
-        conn.close()
+        """), {"session_id": session_id, "max_history": MAX_HISTORY})
 
 
 def clear_history(session_id: str):
     """Clear all history for a session."""
-    conn = sqlite3.connect(DB_PATH)
-    try:
-        conn.execute("DELETE FROM chat_history WHERE session_id = ?", (session_id,))
-        conn.commit()
-    finally:
-        conn.close()
+    with ENGINE.begin() as conn:
+        conn.execute(
+            text("DELETE FROM chat_history WHERE session_id = :session_id"),
+            {"session_id": session_id},
+        )
