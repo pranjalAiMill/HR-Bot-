@@ -11,9 +11,8 @@ sqlalchemy
 pydantic
 requests
 flask-cors
-sentence-transformers
 PyJWT
 gunicorn
-supervisor
 python-dotenv
 psycopg2-binary
+torch --extra-index-url https://download.pytorch.org/whl/cpu
